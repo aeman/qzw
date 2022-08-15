@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block header_js_css %}
+<link rel="stylesheet" href="/static/css/allTree.css">
+<script src="/static/js/article/avalon.min.js"></script>
+<script src="/static/js/article/article_index.js"></script>
+<script type="text/javascript">
+        {% if tag %}
+        window.tag_name = "{{tag}}";
+        {% endif %}
+</script>
+{% endblock %}
+{% block content %}
+<div class="main">
+    <div class="allTreeTitle">
+        {% if tag %}
+        标签：{{tag}} 的文章
+        {% endif %}
+        {% if not tag %}
+        文章
+        {% endif %}
+    </div>
+    <div class='allTreeBox f-cb' id="falls">
+        {% for article in articles %}
+        <div class="pin">
+            <div class="box">
+                <a href="/article/{{ article.id }}"><img class='boxImg'
+                            {% if article.pic_file %}
+                                    src="/static/images/{{ article.pic_file }}"
+                            {% endif %}
+                            {% if not article.pic_file %}
+                                    src="/static/images/default_tree.jpg"
+                            {% endif %}
+                        /></a>
+
+                <div class='imgBottom'>
+                    <a href="/article/{{ article.id }}"><h4>{{ article.article_title }}</h4></a>
+                        {% load duration_format %}
+                        {% autoescape off %}
+                       <p> {{article.article_content|aegean_splice:60}}</p>
+                        {% endautoescape %}
+
+                    <!--div class='imgBottomBox'>
+                        <div class='collectionSpan'>
+                            <div class="allAttention">
+
+                            </div>
+                            <span>{{ course.follow_count }}</span>
+
+                            <div class="allCollection">
+
+                            </div>
+                            <span>{{ course.fav_count }}</span>
+                        </div>
+
+                        <div class='imgContainer f-cb'>
+                            <img src="/static/{{ course.teacher_pic }}" alt="">
+                            <ul>
+                                <li>{{ course.teacher_name }}</li>
+                                <li>{{ course.tree_class }}</li>
+                            </ul>
+                        </div>
+                    </div-->
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+

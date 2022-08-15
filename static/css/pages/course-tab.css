@@ -1,0 +1,54 @@
+@charset "utf-8";
+@import "../module/d-reset.css";
+@import "../module/mod_course_header.css";
+@import "../module/mod_course_common.css";
+@import "../module/mod_course_tab.css";
+body{
+	background-color: #F5F9FA;
+}
+.course-con{
+	width: 1000px;
+	margin: 35px auto 30px auto;
+}
+.del-layer{
+	display: none;
+	position: fixed;
+	top: 40%;
+	width: 180px;
+	padding: 18px 25px;
+	margin-left: -150px;
+	left: 50%;
+	top: 50%;
+	margin-top: -100px;
+	border: 2px solid #336699;
+	background-color: #fff;
+	font-family: "Microsoft YaHei";
+	font-size: 15px;
+}
+.del-layer .layer-pic{
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	background: url("../../images/common/layer-pic.png") no-repeat;
+	background-size: 100%;
+	vertical-align: middle;
+}
+.layer-btns a{
+	display: inline-block;
+	width: 70px;
+	height: 25px;
+	line-height: 25px;
+	font-size: 15px;
+	background-color: #B5B5B5;
+	color: #333333;
+	text-align: center;
+	font-weight: bold;
+}
+.layer-btns{
+	margin-top: 15px;
+}
+.layer-btns .layer-red-btn{
+	background-color: #CC0033;
+	color: #fff;
+	margin-left: 25px;
+}

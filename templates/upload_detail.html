@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block header_js_css %}
+    <link href="/static/semantic.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/allTree.css">
+    <script src='/static/js/public.js'></script>
+    <script src="/static/semantic.js"></script>
+{% endblock %}
+{% block content %}
+    <div class="main">
+        <div class="allTreeTitle">
+            完善上传视频信息
+        </div>
+        <div class="ui form">
+            <div class="field">
+                <label>标题</label>
+                <input type="text" placeholder="标题" id="txtClassName" value="{{ tree.class_name }}">
+            </div>
+            <div class="field">
+                <label>视频说明</label>
+                <textarea id="txtClassDesc">{{ tree.class_desc }}</textarea>
+            </div>
+            <div class="field">
+                <label>标签</label>
+                <input type="text" placeholder="标签" id="txtVideoTag" value="{{ tree.class_name }}">
+            </div>
+        </div>
+        <br>
+        <label>课件</label> &nbsp;
+        <div class="ui button" id="btnSelTreePic">
+            选择课件...
+        </div>
+
+        <form action="/uploadClassPicture/" name="classPicForm" id="classPicForm" method="post"
+              enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="picTree" id="picTree" value="" style="opacity: 0; position: absolute; left: 0px;">
+            <input type="hidden" name="picFileName" id="picFileName" value="">
+        </form>
+        <br>
+        <label>分类</label>
+
+        <div class="ui selection dropdown">
+            <input type="hidden" id="parentId" name="gender">
+
+            <div class="default text">视频分类</div>
+            <i class="dropdown icon"></i>
+
+            <div class="menu">
+                {% for cls in tree_class %}
+                    <div class="item" data-value="{{ cls.id }}">{{ cls.class_name }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="ui divider"></div>
+        <div class="ui green button" id="btnSaveTree">保存</div>
+        {#        <div class="ui button">取消</div>#}
+
+    </div>
+    <br>
+    <br>
+
+    <script>
+        $(function () {
+            $("#btnUploadVideo").click(function () {
+                window.location.href = "/videos/uploadDetail/";
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+{% block header_js_css %}
+    <link rel="stylesheet" href="/static/css/tree.css">
+    <script src="/static/js/tree.js"></script>
+    <script src='/static/js/public.js'></script>
+{% endblock %}
+{% block content %}
+    <div class="treeTopWrap">
+        <div class="treeTop">
+            <div class="treeTopLeft f-fl">
+                <img src="/static/{{ tree.tree_pic }}" alt="" id="classPic" class='f-fl'
+                     style="width: 227px; height: 150px;">
+
+                <div class='treeLeftBox f-fl'>
+                    <h1 class="overflowText" style="width: 450px;">{{ tree.tree_name }}</h1>
+
+                    {#                    <p><span>创建者&nbsp;:&nbsp;{{ creator.name }}</span><b>关注&nbsp;:&nbsp;{{ tree.follow_count }}</b></p>#}
+
+                    <div class='sign'>
+                        {#						<span>签到</span>#}
+                        <div id="userId" style="display: none;">{{ user.id }}</div>
+                        {% ifequal followFlag 1 %}
+                            <span class='attention'>关注该课程</span>
+                        {% else %}
+                            <span class='attention attentionAl'><b>已关注</b> 取消</span>
+                        {% endifequal %}
+                    </div>
+                </div>
+            </div>
+            <div class="treeTopRight f-fr">
+                <div class="share">
+                    <div></div>
+                    <span>分享</span>
+                </div>
+                <div class="edit" {% ifnotequal tree.user_id user.id %} style="visibility:hidden" {% endifnotequal %}>
+                    <div></div>
+                    <span>编辑</span>
+                </div>
+{#                <div class="collection {% ifequal ifFav True %}collectionAl{% endifequal %}">#}
+{#                    <div></div>#}
+{#                    <span>收藏</span>#}
+{#                </div>#}
+                <div class="shareTo">
+                    <div class='arrowTopIcon'></div>
+                    <span>分享到:</span>
+
+                    <div class="bdsharebuttonbox">
+                        <a href="#" data-cmd="tsina" title="分享到新浪微博"
+                           style="width: 42px; height: 42px; background: url('/static/images/sina.jpg');left: 85px; top: 15px; float: left; position: absolute;"></a>
+                        <a href="#" data-cmd="qzone" title="分享到QQ空间"
+                           style="width: 42px; height: 42px; background: url('/static/images/qq.jpg');left: 143px; top: 15px; float: left; position: absolute;"></a>
+                        <a href="#" data-cmd="weixin" title="分享到微信"
+                           style="width: 42px; height: 42px; background: url('/static/images/winxin.jpg');left: 203px; top: 15px; float: left; position: absolute;"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main f-cb">
+        <div class="left f-fl">
+            <div class="treeTitle">
+                <ul class='f-cb'>
+                    <li class='on'>知识树</li>
+                    {#					<li>悬赏榜单</li>#}
+                    {#					<li>做任务</li>#}
+                    {#					<li>高级技能</li>#}
+                </ul>
+            </div>
+            <div class="tree">
+                <div class="treeLeaf">
+                    <div class='leaf0 {% if 0 in studiedCourses %} gray{% endif %}'></div>
+                    <div class='leaf1'></div>
+                    <div class='leaf2'></div>
+                    <div class='leaf3 {% if 3 in studiedCourses %} gray{% endif %}'></div>
+                    <div class='leaf4 {% if 4 in studiedCourses %} gray{% endif %}'></div>
+                    <div class='leaf5'></div>
+                    <div class='leaf6'></div>
+                    <div class='leaf7 {% if 7 in studiedCourses %} gray{% endif %}'></div>
+                    <div class='leaf8 {% if 8 in studiedCourses %} gray{% endif %}'></div>
+                    <div class='leaf9'></div>
+                    <div class='leaf10 {% if 10 in studiedCourses %} gray{% endif %}'></div>
+                    <div class='leaf11'></div>
+                    <div class='leaf12'></div>
+                    <div class='leaf13'></div>
+                    <div class='leaf14 {% if 14 in studiedCourses %} gray{% endif %}'></div>
+                    <div class='leaf15 {% if 15 in studiedCourses %} gray{% endif %}'></div>
+                    <div class='leaf16 {% if 16 in studiedCourses %} gray{% endif %}'></div>
+                    <div class='leaf17 {% if 17 in studiedCourses %} gray{% endif %}'></div>
+                    <div class='leaf18 {% if 18 in studiedCourses %} gray{% endif %}'></div>
+                    <div class='leaf19'></div>
+                    <div class='leaf20'></div>
+                    <div class='leaf21'></div>
+                    <div class='leaf22'></div>
+                    <div class='leaf23 {% if 23 in studiedCourses %} gray{% endif %}'></div>
+                    <div class='leaf24'></div>
+                    <div class='leaf25 {% if 25 in studiedCourses %} gray{% endif %}'></div>
+                    <div class='leaf26 {% if 26 in studiedCourses %} gray{% endif %}'></div>
+                </div>
+                <div class="treeLeafBox">
+                    {% for course in courses %}
+                        <div class="leaf{{ forloop.counter0 }}box wrapT" id="leaf{{ forloop.counter0 }}Id">
+                            {% if forloop.counter0 in indexRightList %}
+                                <a class='treeArrowRight'>
+                            {% else %}
+                                <a class='treeArrowLeft'>
+                            {% endif %}
+                            </a>
+                            <h2>{{ course.course_name }}
+
+                                {#                                {{ arrowDList }}#}
+                            </h2>
+                            <ul>
+                                {% for video in course.video %}
+                                    <a href="/video/{{ video.id }}" target="_blank">
+                                        {% ifequal video.play_times 1 %}
+                                            <li>{{ video.video_name }}</li>
+                                        {% else %}
+                                            <li style="color: #000000;">{{ video.video_name }}</li>
+                                        {% endifequal %}
+
+
+                                    </a>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="right f-fr">
+            {% ifnotequal user None %}
+                <div class="experienceBox">
+                    <div class="experienceTop f-cb">
+                        <img src="/static/{{ user.avatar }}" alt="" class='f-fl'>
+
+                        <div class='f-fl'>
+                            {% ifequal user.name "" %}
+                                <h4>请登录</h4>
+                            {% else %}
+                                <h4>{{ user.name }}</h4>
+                            {% endifequal %}
+                            <span class='name'>{{ gd.grade_name }}</span>
+                            <span class='level'>{{ gd.user_grade }}</span>
+                        </div>
+                    </div>
+                    <div class='f-tar graphTop'><a href="">{{ user.exp_value }}</a>/<a href=""> {{ gd.upper_limit }}</a>
+                    </div>
+                    <div class="graph">
+                        <span>经验&nbsp;:&nbsp;</span>
+                        <strong id="bar">
+                            <a href=""></a>
+                        </strong>
+                    </div>
+                </div>
+            {% endifnotequal %}
+            <div class="mark f-cb">
+                <div>
+                    <span>给该知识树打分</span>
+                </div>
+                <div class='markOver' id="markOverId">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            <div class="getTogether f-cb">
+                <h3>一起学习的同学({{ mates.count }})</h3>
+                {% ifequal mates.count 0 %}
+                    <img src="/static/images/number1.jpg">
+                {% else %}
+                    <ul class='f-cb'>
+                        {% for mate in mates %}
+                            <li><img src="/static/{{ mate.mate_pic }}" alt=""><span>{{ mate.mate_name }}</span></li>
+                        {% endfor %}
+                    </ul>
+                {% endifequal %}
+            </div>
+        </div>
+        <input type="hidden" id="classId" value="{{ class_id }}">
+        <input type="hidden" id="shareTitle" value="{{ shareTitle }}">
+    </div>
+    {#    <div class="bdsharebuttonbox">#}
+    {#        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>#}
+    {#        <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>#}
+    {#        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>#}
+    {#    </div>#}
+    <script>
+        window._bd_share_config = {
+            "common": {
+                "bdText": $("#shareTitle").val(),
+                "bdDesc": $("#shareTitle").val(),
+                "bdUrl": location.href,
+                "bdPic": document.getElementById("classPic").src
+            },
+            "share": {}
+        };
+        with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+    </script>
+    <script>
+        //设置知识树的分值
+        function fnSetValue(value) {
+            var aDiv = $('.markOver div')
+            for (var i = 0; i < value; i++) {
+                aDiv[i].style.backgroundImage = 'url(/static/images/pointright.png)';
+            }
+        }
+        fnSetValue({{ mark_value }});
+    </script>
+{% endblock %}

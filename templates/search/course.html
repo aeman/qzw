@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block header_js_css %}
+	<link rel="stylesheet" href="/static/css/pages/search-result.css"/>
+    <style>
+        .bottomWrap {
+            position: static;
+        }
+    </style>
+{% endblock %}
+
+{% load duration_format %}
+
+{% block content %}
+	<div class="course-con">
+		<div class="search-head">
+			<a href="/search/video/?keyword={{ keyword }}"><span>视频<i>({{ courses_count }})</i></span></a>
+			<a href="/search/course/?keyword={{ keyword }}"><span class="select">知识树<i>({{ classes.paginator.count }})</i></span></a>
+		</div>
+        {% for cls in classes %}
+		<div class="search-know-tree clearfix">
+			<span class="know-pic">
+                <img src="/static/{{ cls.tree_pic }}">
+            </span>
+			<div class="know-con">
+				<p class="con-tit">
+                    {% autoescape off %}
+                    <a href="/class/{{ cls.id }}" target="_blank">{{ cls.tree_name|highlight_keyword:keyword }}</a>
+                    {% endautoescape %}
+                </p>
+				<p class="con-detail">{{ cls.tree_desc }}</p>
+				<p class="con-bot">
+					<span>{{ cls.user_name }}</span>
+					<span>|</span>
+					<span>{{ cls.class_type_name }}</span>
+				</p>
+			</div>
+		</div>
+        {% endfor %}
+        {% ifnotequal classes.paginator.count 0 %}
+		<dl class="com-pages clearfix">
+            <dt>
+                {% if has_previous %}
+                    <a href="?keyword={{ keyword }}&page={{ previous_page_number }}">&lt;上一页</a>
+                {% else %}
+                    <a href="javascript:void(0);">&lt;上一页</a>
+                {% endif %}
+            </dt>
+            {% for page_number in classes.page_range %}
+                {% ifequal page_number classes.number %}
+                    <dd><a class="cur" href="">{{ page_number }}</a></dd>
+                {% else %}
+                    <dd><a href="?keyword={{ keyword }}&page={{ page_number }}">{{ page_number }}</a></dd>
+                {% endifequal %}
+            {% endfor %}
+            <dt>
+                {% if has_next %}
+                    <a href="?keyword={{ keyword }}&page={{ next_page_number }}">下一页&gt;</a>
+                {% else %}
+                    <a href="javascript:void(0);">下一页&gt;</a>
+                {% endif %}
+            </dt>
+		</dl>
+        {% else %}
+            <p style="margin-bottom: 350px; color: #0a0a0b; font-size: 28px;">没有找到您搜索的结果</p>
+        {% endifnotequal %}
+	</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+html,body{height: 100%;}
+.indexWrap{height: 100%;background-image: url(../images/indexImg.png);background-size: 100% 100%;}
+.headerList li{float: left;font-size: 18px;margin-left: 30px;height: 34px;}
+.headerList a{color: #fff;}
+.headerList input{width: 212px;height: 33px;}
+.headerList .hdLogin{font-size: 16px;}
+.headerList div{width: 22px;height: 22px;background: url(../images/searchIcon.png);position: absolute;z-index: 2;left: 480px;top: 5px;}
+.indexContainer{width: 1000px;margin: 0 auto;}
+.indexNav{width: 1000px;line-height: 34px;padding-top: 12px;}
+.indexNavLeft{}
+.indexLine{width: 1000px;height: 521px;border: 1px solid red;margin-top: 68px;background: url(../images/Star.png) no-repeat 60px 20px;}
+.indexNavRight {position: relative;}
+.indexLine{width: 1000px;height: 400px;}
+.indexWecolme{width: 685px;height: 80px;}

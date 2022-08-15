@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/css/module/d-reset.css"/>
+    <link rel="stylesheet" href="/static/css/module/mod_course_header.css"/>
+    <link rel="stylesheet" href="/static/css/base.css">
+    <script src="/static/js/jquery-1.11.2.min.js"></script>
+    <script src="/static/js/jquery.session.js"></script>
+    <script src="/static/js/common.js"></script>
+    <script src="/static/js/dialog.js"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?7de21be1d3e245f0ffd7db26b8932580";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    <style>
+        #lstSearchResult {
+            z-index: 9999;
+        }
+
+        #lstSearchResult li a {
+            width: 115px;
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    </style>
+
+    {% block header_js_css %}{% endblock %}
+</head>
+<body>
+<div class="course-header">
+    <ul class="header-con no-login">
+        <li class="logo">
+            <a href="/"><img src="/static/images/common/logo.png"></a>
+        </li>
+        <div style="float: right; margin-right: 30px;">
+        <li class="txt {% ifequal url "home" %}select{% endifequal %}" style="cursor: pointer;">首页</li>
+        <!--<li class="txt article" style="cursor: pointer;">话题心解</li>-->
+        <li class="txt {% ifequal url "article" %}select{% endifequal %}" style="cursor: pointer;">话题心解</li>
+        <li class="txt {% ifequal url "search" %}select{% endifequal %}" style="cursor: pointer;">全部知识点</li>
+        <li class="search">
+            <span class="search-input">
+                <input type="text" id="txtKeyword" value="{{ keyword }}" />
+                <a href="#" id="btnSearch"><i></i></a>
+                <ul class="search-input-layer clearfix" style="display: none" id="lstSearchResult">
+							<li>
+								<a href="">为什么学<span class="red-txt">心理学</span></a>
+								<span>视频</span>
+							</li>
+							<li>
+								<a href="">怎么学<span class="red-txt">心理学</span></a>
+								<span>视频</span>
+							</li>
+							<li>
+								<a href="">为什么学<span class="red-txt">心理学</span></a>
+								<span>视频</span>
+							</li>
+							<li>
+								<a href="">为什么学<span class="red-txt">心理学</span></a>
+								<span>视频</span>
+							</li>
+							<li>
+								<a href="">为什么学<span class="red-txt">心理学</span></a>
+								<span>视频</span>
+							</li>
+							<li>
+								<a href="">为什么学<span class="red-txt">心理学</span></a>
+								<span>视频</span>
+							</li>
+						</ul>
+            </span>
+        </li>
+        {% if request.user.is_authenticated %}
+            <li class="nameTitle">
+                <span class="user-pic" style="background-image: url('/static/{{ request.session.avatar }}');">
+                </span>
+                <ul style="display: none">
+{#                    {% if 'course.can_edit_video' in request.user.get_all_permissions %}#}
+{#                        <li id="btnVideos" style="height: 40px; line-height: 40px;">视频管理</li>#}
+{#                    {% endif %}#}
+                    <li id="btnNewTree" style="height: 40px; line-height: 40px;">新建知识树</li>
+                    <li id="btnAddArticle" style="height: 40px; line-height: 40px;">我的知识点</li>
+                    <li id="btnOptions" style="height: 40px; line-height: 40px;">个人设置</li>
+                    <li id="btnLogout" style="height: 40px; line-height: 40px;">退出</li>
+                </ul>
+            </li>
+            {#            <li class='nameTitle'>#}
+            {#                <div>#}
+            {#                    <img src="/static/{{ request.session.avatar }}" id="topAvatar" alt="">#}
+            {#                </div>#}
+            {#                <ul>#}
+            {#                    {% if 'course.can_edit' in request.user.get_all_permissions %}#}
+            {#                        <li id="btnVideos">视频管理</li>#}
+            {#                    {% endif %}#}
+            {#                    <li id="btnNewTree">新建知识树</li>#}
+            {#                    <li id="btnOptions">个人设置</li>#}
+            {#                    <li id="btnLogout">退出</li>#}
+            {#                </ul>#}
+            {#            </li>#}
+        {% else %}
+            <li class="login">
+                <a href="" class="hdLoginOn">登录</a>
+                <span>|</span>
+                <a href="" class="hdLoginRe">注册</a>
+            </li>
+            </div>
+        {% endif %}
+        {#				<li class="login">#}
+        {#					<a href="">登录</a>#}
+        {#					<span>|</span>#}
+        {#					<a href="">注册</a>#}
+        {#				</li>#}
+    </ul>
+</div>
+
+{#<div class="headerWrap">#}
+{#    <div class="header f-cb">#}
+{#        <div class="headerLeft f-fl">#}
+{#            <a href="/"> <img src="/static/images/logo.png" alt=""></a>#}
+{#        </div>#}
+{#        <div class="headerRight f-fr">#}
+{#            <ul class='headerList'>#}
+{#                <li class="on"><a href="/">首頁</a></li>#}
+{#                <li><a href="/">全部知识树</a></li>#}
+{#                <li><a href="">我的知识树</a></li>#}
+{#                <li><input type="text" class='hdSearch'>#}
+{##}
+{#                    <div class='searchIcon'></div>#}
+{#                </li>#}
+{#                {% if request.user.is_authenticated %}#}
+{#                    <li class='nameTitle'>#}
+{#                        <div>#}
+{#                            <img src="/static/{{ request.session.avatar }}" id="topAvatar" alt="">#}
+{#                        </div>#}
+{#                        <ul>#}
+{#                            {% if 'course.can_edit' in request.user.get_all_permissions %}#}
+{#                                <li id="btnVideos">视频管理</li>#}
+{#                            {% endif %}#}
+{#                            <li id="btnNewTree">新建知识树</li>#}
+{#                            <li id="btnOptions">个人设置</li>#}
+{#                            <li id="btnLogout">退出</li>#}
+{#                        </ul>#}
+{#                    </li>#}
+{#                {% else %}#}
+{#                    <li class='hdLogin hdLoginOn'><a href="">登录</a></li>#}
+{#                    <li class='hdLogin hdLoginRe'><a href="">注册</a></li>#}
+{#                {% endif %}#}
+{#            </ul>#}
+{#            <div></div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+
+{% block content %}{% endblock %}
+
+<div class="bottomWrap" id="bottomPos">
+    <div id="Layer1" style="display: none; z-index: 100;"></div>
+    <div class="bottom">
+        <ul>
+            <li>北京千字文教育科技有限公司&nbsp;版权所有</li>
+            <li>视频内容来自网络，如有侵权请联系support@qianziwen.com</li>
+            <li>Copyright © 2014-2015, qianziwen.com, All Rights Reserved 京ICP备 14030440号</li>
+        </ul>
+        <div class='contact'>
+            <span>联系我们:</span>
+            <a href="http://weibo.com/p/1006065463782606" rel="nofollow" target="_blank">
+                <img src="/static/images/sinag.png" alt="">
+            </a>
+            <a href="javascript:void(0);">
+                <img src="/static/images/winxing.png" alt="" id="weixin-qr">
+                <img src="/static/images/weixin-qr.png" class="weixinpop">
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

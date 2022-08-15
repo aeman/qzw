@@ -1,0 +1,109 @@
+@charset "utf-8";
+.course-tab{
+	font-family: "Microsoft YaHei";
+}
+.course-tab .tab-tit{
+	margin-bottom: 33px;
+}
+.course-tab .tab-tit a{
+	margin-left: 18px;
+}
+.course-tab .tab-tit span{
+	color: #336598;
+	font-size: 36px;
+}
+.course-tab .tab-tit .gre-txt{
+	color: #33CC33;
+	font-size: 25px;
+	font-weight: bold;
+}
+.course-tab .tab-tit .smal-txt{
+	font-size: 18px;
+}
+.course-tab .tab-con{
+	width: 100%;
+}
+.course-tab .tab-con th{
+	border: 3px solid #336699;
+	height: 54px;
+	background-color: #fff;
+	color: #336699;
+	font-size: 25px;
+}
+.course-tab td{
+	padding: 29px 0 24px;
+	border-bottom: 4px solid #336699;
+	vertical-align: top;
+}
+.course-tab .no-border td{
+	border: none;
+}
+.course-tab tr .td-blu{
+	background-color: #336699;
+	color: #fff;
+}
+.course-tab .course-line .line-pic{
+	float: left;
+	height: 120px;
+	width: 120px;
+	border-radius: 120px;
+	background: url("../../images/temp/tab-pic.png") no-repeat;
+	background-size: 100%;
+	margin-right: 20px;
+}
+.course-tab .course-line ul{
+	width: 274px;
+	float: left;
+}
+.course-tab .course-line li a{
+	font-size: 17px;
+	color: #333;
+	font-weight: 500;
+}
+.course-tab .course-line .kind{
+	padding: 26px 0 5px;
+}
+.course-tab .kind span{
+	font-size: 15px;
+}
+.course-tab .kind .txt-blu{
+	color: #336699;
+}
+.course-tab .time span{
+	font-size: 14px;
+	color: #666666;
+}
+.course-tab .know-cons{
+	padding-left: 35px;
+}
+.course-tab .know-cons li{
+	list-style: inherit;
+}
+.course-tab .know-cons a{
+	font-size: 17px;
+	line-height: 33px;
+	color: #333;
+}
+.course-tab .stu-num{
+	text-align: center;
+	font-size: 17px;
+}
+.course-tab .handle{
+	position: relative;
+}
+.course-tab .handle a{
+	font-size: 17px;
+	color: #336699;
+}
+.course-tab .handle{
+	padding-left: 10px;
+}
+.course-tab .handle li{
+	margin-bottom: 12px;
+}
+.course-tab .handle .del{
+	position: absolute;
+	bottom: 24px;
+	left: 10px;
+	color: #CC0000;
+}

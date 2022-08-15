@@ -1,0 +1,1027 @@
+@charset "UTF-8";
+.treeTopWrap {
+    background: #f9fafc;
+    height: 220px;
+    padding-top: 1px;
+}
+
+.treeTop {
+    width: 1000px;
+    height: 150px;
+    margin: 40px auto 0;
+}
+
+.treeTopLeft {
+}
+
+.treeLeftBox {
+    height: 150px;
+    position: relative;
+    margin-left: 18px;
+}
+
+.treeLeftBox h1 {
+    font-size: 26px;
+    color: #333333;
+    font-weight: normal;
+}
+
+.treeLeftBox p {
+    font-size: 16px;
+    color: #999999;
+    margin: 0px 0 0 3px;
+}
+
+.treeLeftBox p span {
+    margin-right: 18px;
+}
+
+.treeLeftBox p b {
+    font-weight: normal;
+}
+
+.sign {
+    position: absolute;
+    bottom: 0px;
+    height: 50px;
+    line-height: 50px;
+    margin-top: 25px;
+}
+
+.sign span {
+    padding: 15px 35px;
+    background: #48cfae;
+    color: #ffffff;
+    margin-right: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.sign .attention {
+    background: #fe8590;
+    transition: 1s;
+    -moz-transition: 1s;
+    -webkit-transition: 1s;
+    -o-transition: 1s;
+}
+
+.treeLeftBox .sign .attentionAl {
+    background: #ffffff;
+    transition: 1s;
+    -moz-transition: 1s;
+    -webkit-transition: 1s;
+    -o-transition: 1s;
+    color: #b5b5b5;
+}
+
+.treeLeftBox .sign .attentionAl b {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.treeLeftBox .sign .attentionAl b:after {
+    content: '';
+    width: 1px;
+    height: 14px;
+    display: inline-block;
+    background: #d9d9d9;
+    margin: 0 5px 0 10px;
+}
+
+.treeLeftBox .sign .attentionAl a {
+    font-size: 18px;
+    color: #b5b5b5
+}
+
+.treeTopRight {
+    width: 300px;
+    margin-top: 36px;
+    position: relative;
+}
+
+.shareTo {
+    position: absolute;
+    width: 275px;
+    height: 84px;
+    background: #fff;
+    border: 1px solid #dadada;
+    position: relative;
+    left: 120px;
+    top: 100px;
+    display: none;
+}
+
+.shareTo div.arrowTopIcon {
+    position: absolute;
+    background: url(../images/arrowTop.jpg) no-repeat;
+    width: 24px;
+    height: 13px;
+    left: 117px;
+    top: -13px;
+}
+
+.treeTopRight .share, .treeTopRight .collection, .treeTopRight .edit {
+    width: 100px;
+    text-align: center;
+    float: right;
+}
+
+.treeTopRight .share {
+    background: url(../images/share.png) no-repeat 40px 20px;
+}
+
+.treeTopRight .share div, .treeTopRight .collection div, .treeTopRight .edit div {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    border: 1px solid #cccccc;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.treeTopRight span {
+    margin-top: 8px;
+    display: block;
+}
+
+.share div:hover, .collection div:hover, .edit div:hover {
+    border-color: #84d6c2;
+}
+
+.treeTopRight .collection {
+    background: url(../images/collection1.png) no-repeat 40px 20px
+}
+
+.treeTop .treeTopRight .collectionAl {
+    background: url(../images/Collection.png) no-repeat 40px 20px
+}
+
+.treeTopRight .edit {
+    background: url(../images/edit.png) no-repeat 40px 20px
+}
+
+.treeTitle {
+    margin-top: 10px;
+    border-bottom: 1px solid #f2f2f7;
+}
+
+.treeTitle li {
+    float: left;
+    padding: 20px 32px;
+    font-size: 16px;
+    color: #333333;
+}
+
+.treeTitle li.on {
+    color: #4acbf5;
+    border-bottom: 1px solid #4acbf5;
+}
+
+.experienceBox {
+    height: 125px;
+    border-bottom: 1px solid #dcdcdc;
+    margin-top: 26px;
+}
+
+.experienceTop img {
+    border-radius: 50%;
+    height: 62px;
+    width: 62px;
+}
+
+.experienceTop div {
+    margin-left: 10px;
+}
+
+.experienceTop div h4 {
+    font-size: 16px;
+    color: #333333;
+}
+
+.experienceTop div span {
+    border: 1px solid #dbdbdb;
+    padding: 2px 7px;
+    margin-top: 8px;
+    display: inline-block;
+    color: #828282
+}
+
+.experienceTop .level {
+    background: url(../images/_03.png) no-repeat 5px 5px;
+    padding-left: 25px;
+}
+
+.control {
+    margin-top: 29px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #dcdcdc
+}
+
+.control h3 {
+    font-size: 20px;
+    color: #333333;
+    float: left;
+}
+
+.control li {
+    margin-top: 17px;
+    color: #666666;
+    float: left;
+    width: 280px;
+}
+
+.control li span {
+    float: left;
+}
+
+.control li b {
+    font-weight: 400;
+    float: right;
+}
+
+.controlPoint {
+    float: left;
+    margin: 2px 0px 0 12px;
+}
+
+.controlPoint div {
+    background: url(../images/point.png) no-repeat;
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin-right: 5px;
+}
+
+.mark {
+    padding: 30px 0;
+    border-bottom: 1px solid #dcdcdc;
+    font-size: 16px;
+    color: #333333;
+}
+
+.getTogether {
+    padding: 30px 0 12px;
+    border-bottom: 1px solid #dcdcdc
+}
+
+.getTogether h3 {
+    font-size: 18px;
+    color: #333333;
+}
+
+.getTogether ul {
+    margin: 18px -45px 0px 0;
+}
+
+.getTogether li {
+    float: left;
+    width: 62px;
+    margin: 0 45px 16px 0;
+    text-align: center;
+}
+
+.getTogether li img {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+}
+
+.getTogether li span {
+    margin-top: 9px;
+    display: inline-block;
+}
+
+.contactTree h3 {
+    height: 60px;
+    border-bottom: 1px solid #dcdcdc;
+    line-height: 60px;
+    width: 680px;
+    font-size: 20px;
+    color: #333333;
+}
+
+.contactTreeBox ul {
+    margin: 24px -31px 52px 0;
+}
+
+.contactTreeBox li {
+    float: left;
+    width: 206px;
+    margin-right: 31px;
+}
+
+.contactTreeBox li a {
+    font-size: 16px;
+    color: #333333;
+}
+
+.contactTreeBox span {
+    margin: 14px 0;
+    display: inline-block;
+}
+
+.treeTopRight .shareToDb {
+    display: block;
+}
+
+.shareTo span {
+    font-size: 16px;
+    color: #000000;
+    position: absolute;
+    left: 26px;
+    top: 26px;
+}
+
+.shareTo div {
+    float: left;
+    width: 42px;
+    height: 42px;
+    position: absolute;
+}
+
+.shareTo .sinaI {
+    background: url(../images/sina.jpg) no-repeat;
+    left: 85px;
+    top: 20px;
+    cursor: pointer;
+}
+
+.shareTo .qq {
+    background: url(../images/qq.jpg) no-repeat;
+    left: 143px;
+    top: 20px;
+    cursor: pointer;
+}
+
+.shareTo .winxin {
+    background: url(../images/winxin.jpg) no-repeat;
+    left: 203px;
+    top: 20px;
+    cursor: pointer;
+}
+
+.mark div {
+    float: left;
+}
+
+.markOver {
+    margin-left: 5px;
+}
+
+.markOver div {
+    width: 20px;
+    height: 20px;
+    float: left;
+    background: url(../images/point.png) no-repeat;
+    margin-left: 5px;
+}
+
+.introduction h4 {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.introduction textarea {
+    width: 680px;
+    height: 159px;
+    border: 1px solid #e5e5e5;
+    margin-top: 12px;
+}
+
+/*tree*/
+.tree .treeLeaf div {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: url(../images/leaf.png) no-repeat;
+    cursor: pointer;
+}
+
+.tree .treeLeaf .leaf0 {
+    left: 238px;
+    top: 80px;
+    background-position: -29px 0;
+}
+
+.tree .treeLeaf .leaf1 {
+    left: 268px;
+    top: 92px;
+    background-position: 0px 0;
+}
+
+.tree .treeLeaf .leaf2 {
+    left: 297px;
+    top: 80px;
+    background-position: -289px -26px;
+}
+
+.tree .treeLeaf .leaf3 {
+    left: 360px;
+    top: 90px;
+    background-position: -55px -26px;
+}
+
+.tree .treeLeaf .leaf4 {
+    left: 217px;
+    top: 176px;
+    background-position: -341px 0px;
+}
+
+.tree .treeLeaf .leaf5 {
+    left: 265px;
+    top: 184px;
+    background-position: -107px 0px;
+}
+
+.tree .treeLeaf .leaf6 {
+    left: 359px;
+    top: 183px;
+    background-position: -81px -26px;
+}
+
+.tree .treeLeaf .leaf7 {
+    left: 380px;
+    top: 143px;
+    background-position: -107px -26px;
+}
+
+.tree .treeLeaf .leaf8 {
+    left: 248px;
+    top: 215px;
+    background-position: -159px -26px;
+}
+
+.tree .treeLeaf .leaf9 {
+    left: 412px;
+    top: 208px;
+    background-position: -263px -26px;
+}
+
+.tree .treeLeaf .leaf10 {
+    left: 290px;
+    top: 273px;
+    background-position: -211px -26px;
+}
+
+.tree .treeLeaf .leaf11 {
+    left: 401px;
+    top: 240px;
+    background-position: -185px -26px;
+}
+
+.tree .treeLeaf .leaf12 {
+    left: 415px;
+    top: 240px;
+    background-position: -185px 0px;
+}
+
+.tree .treeLeaf .leaf13 {
+    left: 465px;
+    top: 200px;
+    background-position: -133px 0px;
+}
+
+.tree .treeLeaf .leaf14 {
+    left: 486px;
+    top: 199px;
+    background-position: -29px 0px;
+}
+
+.tree .treeLeaf .leaf15 {
+    left: 456px;
+    top: 249px;
+    background-position: -211px 0px;
+}
+
+.tree .treeLeaf .leaf16 {
+    left: 435px;
+    top: 304px;
+    background-position: -237px 0px;
+}
+
+.tree .treeLeaf .leaf17 {
+    left: 182px;
+    top: 318px;
+    background-position: -237px -26px;
+}
+
+.tree .treeLeaf .leaf18 {
+    left: 138px;
+    top: 368px;
+    background-position: -289px -26px;
+}
+
+.tree .treeLeaf .leaf19 {
+    left: 195px;
+    top: 344px;
+    background-position: 0px -26px;
+}
+
+.tree .treeLeaf .leaf20 {
+    left: 246px;
+    top: 320px;
+    background-position: -263px 0px;
+}
+
+.tree .treeLeaf .leaf21 {
+    left: 246px;
+    top: 320px;
+    background-position: -263px 0px;
+}
+
+.tree .treeLeaf .leaf22 {
+    left: 220px;
+    top: 361px;
+    background-position: -289px 0px;
+}
+
+.tree .treeLeaf .leaf23 {
+    left: 277px;
+    top: 412px;
+    background-position: -315px 0px;
+}
+
+.tree .treeLeaf .leaf24 {
+    left: 359px;
+    top: 365px;
+    background-position: -341px 0px;
+}
+
+.tree .treeLeaf .leaf25 {
+    left: 404px;
+    top: 355px;
+    background-position: -263px -26px;
+}
+
+.tree .treeLeaf .leaf25 {
+    left: 384px;
+    top: 429px;
+    background-position: -263px -26px;
+}
+
+.tree .treeLeaf .leaf26 {
+    left: 466px;
+    top: 395px;
+    background-position: -159px 0px;
+}
+
+.tree .treeLeaf .leaf0.gray {
+    left: 238px;
+    top: 80px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -29px 0;
+}
+
+.tree .treeLeaf .leaf1.gray {
+    left: 268px;
+    top: 92px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: 0px 0;
+}
+
+.tree .treeLeaf .leaf2.gray {
+    left: 297px;
+    top: 80px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -289px -26px;
+}
+
+.tree .treeLeaf .leaf3.gray {
+    left: 360px;
+    top: 90px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -55px -26px;
+}
+
+.tree .treeLeaf .leaf4.gray {
+    left: 217px;
+    top: 176px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -341px 0px;
+}
+
+.tree .treeLeaf .leaf5.gray {
+    left: 265px;
+    top: 184px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -107px 0px;
+}
+
+.tree .treeLeaf .leaf6.gray {
+    left: 359px;
+    top: 183px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -81px -26px;
+}
+
+.tree .treeLeaf .leaf7.gray {
+    left: 380px;
+    top: 143px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -107px -26px;
+}
+
+.tree .treeLeaf .leaf8.gray {
+    left: 248px;
+    top: 215px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -159px -26px;
+}
+
+.tree .treeLeaf .leaf9.gray {
+    left: 412px;
+    top: 208px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -263px -26px;
+}
+
+.tree .treeLeaf .leaf10.gray {
+    left: 290px;
+    top: 273px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -211px -26px;
+}
+
+.tree .treeLeaf .leaf11.gray {
+    left: 401px;
+    top: 240px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -185px -26px;
+}
+
+.tree .treeLeaf .leaf12.gray {
+    left: 415px;
+    top: 240px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -185px 0px;
+}
+
+.tree .treeLeaf .leaf13.gray {
+    left: 465px;
+    top: 200px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -133px 0px;
+}
+
+.tree .treeLeaf .leaf14.gray {
+    left: 486px;
+    top: 199px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -29px 0px;
+}
+
+.tree .treeLeaf .leaf15.gray {
+    left: 456px;
+    top: 249px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -211px 0px;
+}
+
+.tree .treeLeaf .leaf16.gray {
+    left: 435px;
+    top: 304px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -237px 0px;
+}
+
+.tree .treeLeaf .leaf17.gray {
+    left: 182px;
+    top: 318px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -237px -26px;
+}
+
+.tree .treeLeaf .leaf18.gray {
+    left: 138px;
+    top: 368px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -289px -26px;
+}
+
+.tree .treeLeaf .leaf19.gray {
+    left: 195px;
+    top: 344px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: 0px -26px;
+}
+
+.tree .treeLeaf .leaf20.gray {
+    left: 246px;
+    top: 320px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -263px 0px;
+}
+
+.tree .treeLeaf .leaf21.gray {
+    left: 246px;
+    top: 320px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -263px 0px;
+}
+
+.tree .treeLeaf .leaf22.gray {
+    left: 220px;
+    top: 361px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -289px 0px;
+}
+
+.tree .treeLeaf .leaf23.gray {
+    left: 277px;
+    top: 412px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -315px 0px;
+}
+
+.tree .treeLeaf .leaf24.gray {
+    left: 359px;
+    top: 365px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -341px 0px;
+}
+
+.tree .treeLeaf .leaf25.gray {
+    left: 404px;
+    top: 355px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -263px -26px;
+}
+
+.tree .treeLeaf .leaf25.gray {
+    left: 384px;
+    top: 429px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -263px -26px;
+}
+
+.tree .treeLeaf .leaf26.gray {
+    left: 466px;
+    top: 395px;
+    background: url(../images/leafGray.png) no-repeat;
+    background-position: -159px 0px;
+}
+
+.treeLeafBox div {
+    position: absolute;
+}
+
+.treeLeafBox .treeArrowLeft {
+    width: 18px;
+    height: 13px;
+    position: absolute;
+    left: -17px;
+    top: 0px;
+    background: url(../images/treeArrowLeft.png) no-repeat #fff;
+    z-index: 10;
+}
+
+.treeLeafBox .treeArrowRight {
+    width: 18px;
+    height: 13px;
+    position: absolute;
+    right: -17px;
+    top: -0px;
+    background: url(../images/treeArrowRight.png) no-repeat #fff;
+    z-index: 10;
+}
+
+.treeLeafBox span {
+    color: #333333;
+    font-size: 14px;
+    border: 1px solid #dbdbdb;
+    padding: 6px 8px;
+    background: #fff;
+}
+
+.tree .treeLeafBox ul {
+    display: block;
+    background: #ffffff;
+    border: 1px solid #dbdbdb;
+    padding: 12px 10px;
+    margin-top: -1px;
+    display: none;
+    width: 180px;
+
+}
+
+.tree .treeLeafBox ul li {
+    line-height: 26px;
+    word-break:keep-all;/* 不换行 */
+    white-space:nowrap;/* 不换行 */
+    overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+    text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+
+.treeLeafBox .leaf0box {
+    left: 395px;
+    top: 40px;
+    z-index: 100;
+}
+
+.treeLeafBox .leaf1box {
+    right: 464px;
+    top: 60px;
+    z-index: 99;
+}
+
+.treeLeafBox .leaf2box {
+    right: 482px;
+    top: 150px;
+    z-index: 98;
+}
+
+.treeLeafBox .leaf3box {
+    left: 420px;
+    top: 102px;
+    z-index: 97;
+}
+
+.treeLeafBox .leaf4box {
+    left: 524px;
+    top: 153px;
+    z-index: 96;
+}
+
+.treeLeafBox .leaf5box {
+    right: 455px;
+    top: 192px;
+    z-index: 95;
+}
+
+.treeLeafBox .leaf6box {
+    left: 492px;
+    top: 208px;
+    z-index: 93;
+}
+
+.treeLeafBox .leaf7box {
+    left: 474px;
+    top: 274px;
+    z-index: 92;
+}
+
+.treeLeafBox .leaf8box {
+    left: 504px;
+    top: 357px;
+    z-index: 91;
+}
+
+.treeLeafBox .leaf9box {
+    left: 422px;
+    top: 400px;
+    z-index: 90;
+}
+
+.treeLeafBox .leaf10box {
+    right: 410px;
+    top: 244px;
+    z-index: 89;
+}
+
+.treeLeafBox .leaf11box {
+    right: 522px;
+    top: 291px;
+    z-index: 88;
+}
+
+/*.treeLeafBox .leaf13box{left: 384px;top: 342px;z-index: 87;}*/
+/*.treeLeafBox .leaf14box{left: 412px;top: 430px;z-index: 86;}*/
+.treeLeafBox .leaf12box {
+    right: 562px;
+    top: 349px;
+    z-index: 85;
+}
+
+.treeLeafBox .leaf13box {
+    right: 421px;
+    top: 390px;
+    z-index: 83;
+}
+
+/*.treeLeafBox .leaf15box{right: 562px;top: 349px;z-index: 85;}*/
+/*.treeLeafBox .leaf17box{right: 421px;top: 390px;z-index: 83;}*/
+
+/*进度条*/
+.graphTop a {
+    color: #84d6c2;
+}
+
+.graph {
+    width: 280px;
+    height: 10px;
+    margin-top: 8px;
+}
+
+.graph span {
+    font-size: 14px;
+    color: #999999;
+    float: left;
+    margin-right: 10px;
+}
+
+#bar {
+    display: block;
+    background: #eaeaea;
+    float: left;
+    height: 100%;
+    text-align: center;
+    border-radius: 10px;
+    width: 230px;
+    margin-top: 5px;
+}
+
+#bar a {
+    height: 100%;
+    background: #84d6c2;
+    display: block;
+    border-radius: 10px;
+    width: 0%;
+}
+
+/*弹窗*/
+.noAttention {
+    width: 567px;
+    background: #fff;
+}
+
+.noAttentionTop {
+    padding: 36px 0 30px 48px;
+    border-bottom: 1px solid #e4e4e4
+}
+
+.noAttentionTop h3 {
+    font-size: 18px;
+    color: #333333;
+    font-weight: 400;
+}
+
+.noAttentionTop ul {
+    margin-top: 30px;
+}
+
+.noAttentionTop ul li {
+    line-height: 30px;
+}
+
+.noAttentionTop ul input {
+    vertical-align: middle;
+    margin-right: 10px;
+    width: 16px;
+    height: 16px;
+}
+
+.noAttentionBottom {
+    padding: 30px 0 35px 0
+}
+
+.noAttentionBottom p {
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    text-align: center;
+}
+
+.noAttentionBottom div {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.attentionAlso {
+    width: 184px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: #fff;
+    background: #48cfae;
+    border: none;
+    font-size: 18px;
+    margin-right: 14px;
+}
+
+.attentionOver {
+    width: 168px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: #fff;
+    border: 1px solid #eaeaea;
+    font-size: 18px;
+}
+
+.attentionTree {
+    width: 567px;
+    background: #fff;
+}
+
+.attentionTreeTop {
+    height: 150px;
+    line-height: 150px;
+    text-align: center;
+    font-size: 18px;
+    border-bottom: 1px solid #e4e4e4;
+}
+
+.attentionTreeBottom {
+    text-align: center;
+    padding: 20px 0;
+}

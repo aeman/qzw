@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/static/semantic.css">
+    <script src="/static/jquery.js"></script>
+    <script src="/static/semantic.js"></script>
+    <script>
+        $(function () {
+            $("#register").click(function () {
+                $('#registerModal').modal('show');
+            });
+
+            $("#login").click(function () {
+                $('#loginModal').modal('show');
+            });
+            $("#logout").click(function () {
+                window.location.href = '/logout';
+            });
+
+            $("#btnLogin").click(function(){
+                $("#loginForm").submit();
+            });
+
+            $("#btnRegister").click(function(){
+{#                $("#regForm").submit();#}
+                $.post("/register/", $("#regForm").serialize(), function (data) {
+                    alert("Data Loaded: " + data.result);
+                    $('#registerModal').modal('hide');
+                    $('#infoModal').modal('show');
+                });
+            });
+
+            $("#btnFinishRegister").click(function () {
+                $("#infoForm").submit();
+            });
+        })
+    </script>
+</head>
+<body>
+{{ user_name }}
+<div class="ui button" id="register">注册</div>
+<div class="ui button" id="login">登录</div>
+<div class="ui button" id="logout">注销</div>
+<a class="ui button" href="/userOptions">帐号设置</a>
+<div class="ui small modal" id="loginModal">
+    <i class="close icon"></i>
+
+    <div class="header">
+        登录
+    </div>
+    <div class="content">
+        <form method="POST" action="/login/" id="loginForm">
+            {% csrf_token %}
+        <div class="ui form">
+            <div class="field">
+                <div class="ui left icon input">
+                    <input placeholder="帐号" type="text" name="mail">
+                    <i class="user icon"></i>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <input placeholder="密码" type="password" name="password">
+                    <i class="lock icon"></i>
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="autoLogin">
+                        <label>7天内免登录</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <a>忘记密码?</a>
+                </div>
+            </div>
+            <div class="field">
+                <div class="fluid ui green button" id="btnLogin">登录</div>
+            </div>
+            <div class="field">
+                还没有帐号? <a>立即注册</a>
+            </div>
+        </div>
+    </form>
+    </div>
+</div>
+
+<div class="ui small modal" id="registerModal">
+    <i class="close icon"></i>
+
+    <div class="header">
+        注册
+    </div>
+    <div class="content">
+        <form method="POST" action="/register/" id="regForm">
+            {% csrf_token %}
+            <div class="ui form">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <input placeholder="邮箱" type="text" name="mail">
+                        <i class="mail icon"></i>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <input placeholder="密码" type="password" name="pass">
+                        <i class="lock icon"></i>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <input placeholder="昵称" type="text" name="name">
+                        <i class="user icon"></i>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="fluid ui green button" id="btnRegister">注册</div>
+                </div>
+                <div class="field">
+                    已有帐号? <a>立即登录</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="ui small modal" id="infoModal">
+    <i class="close icon"></i>
+
+    <div class="header">
+        补充一点资料
+    </div>
+    <div class="content">
+        <form method="POST" action="/finishRegister/" id="infoForm">
+            {% csrf_token %}
+            <div class="ui form">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <input placeholder="姓名" type="text" name="student_name">
+{#                        <i class="mail icon"></i>#}
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <input placeholder="学校" type="text" name="school_id">
+{#                        <i class="mail icon"></i>#}
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <input placeholder="学号" type="text" name="student_no">
+                        <input type="hidden" name="user_type" value="0">
+{#                        <i class="mail icon"></i>#}
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="fluid ui green button" id="btnFinishRegister">注册</div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

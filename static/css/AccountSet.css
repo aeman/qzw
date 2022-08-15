@@ -1,0 +1,24 @@
+.captionRight .on{color: #4acbf5;border-bottom: 1px solid #4acbf5}
+.captionRight{height: 57px;}
+.captionRight div{height: 57px;cursor: pointer;}
+.infor{margin-top: 20px;}
+.infor strong{margin-right: 20px;}
+.infor div{display: block;margin-bottom: 20px;}
+.infor div.setImg{display: inline-block;position: relative;width: 100px;height: 30px;background: #48cfae;color: #FFF;line-height: 30px;}
+.infor div p{display: inline-block;margin-left: 20px;}
+.infor div img{display:block;margin-left: 50px;}
+.infor .setImg input{width: 100px;height: 30px;opacity: 0;filter:alpha(opacity=0);}
+.infor .setImg span{position: absolute;left: 20px;top: 0;cursor: pointer;}
+.infor div input{width: 342px;height: 50px;border: 1px solid #dedede;}
+.infor div label{cursor: pointer;}
+.infor div .infoRadio{width: 15px;height: 15px;vertical-align: middle;}
+.infor div span{margin-right: 20px;}
+.inforSafe{margin-top: 20px;display: none;}
+.inforSafe div{display: block;margin-bottom: 20px;}
+.inforSafe div input{width: 342px;height: 50px;border: 1px solid #dedede; padding-left: 1px;}
+.inforSafe div .infoRadio{width: 15px;height: 15px;vertical-align: middle;}
+.inforSafe div span{margin-right: 20px;display: inline-block;width: 80px;}
+.inforSafe .sub{background: #48cfae}
+.accountBinding p{font-size: 16px;margin-bottom: 20px;color: #4acbf5}
+.changePassword p{font-size: 16px;margin-bottom: 20px;color: #4acbf5}
+#save{width: 100px;height: 30px;color: #fff;line-height: 30px;text-align: center;background: #48cfae;margin-left: 50px;cursor: pointer;}

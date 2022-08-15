@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block header_js_css %}
+    <link rel="stylesheet" href="/static/css/pages/search-result.css"/>
+    <style>
+        .bottomWrap {
+            position: static;
+        }
+    </style>
+{% endblock %}
+
+{% load duration_format %}
+
+{% block content %}
+    <div class="course-con">
+        <div class="search-head">
+            <a href="/search/video/?keyword={{ keyword }}"><span class="select">视频<i>({{ courses.paginator.count }})</i></span></a>
+            <a href="/search/course/?keyword={{ keyword }}"><span>知识树<i>({{ classes_count }})</i></span></a>
+        </div>
+        {% for course in courses %}
+            <div class="search-know-tree search-video clearfix">
+			<span class="know-pic">
+                <img src="/static/{{ course.video_pic }}">
+            </span>
+
+                <div class="know-con">
+                    <p class="con-tit">
+                        {% autoescape off %}
+                        <a href="/video/{{ course.first_video_id }}" target="_blank">{{ course.course_name|default:""|highlight_keyword:keyword}}</a>
+                        {% endautoescape %}
+                    </p>
+
+                    <p class="con-detail">{% ifnotequal course.course_desc None %}
+                        {{ course.course_desc }} {% else %}   {% endifnotequal %}</p>
+
+                    <p class="con-bot">
+                        <span>{{ course.videos.count }}个视频 &nbsp; {{ course.course_time | course_time_format }}</span>
+                    </p>
+                    <ul class="con-video clearfix">
+                        {% for video in course.videos %}
+                            <li>
+                                <span class="pic"></span>
+                                {% autoescape off %}
+                                <a href="/video/{{ video.id }}" target="_blank"><em>{{ video.video_name|highlight_keyword:keyword }}</em></a>
+                                {% endautoescape %}
+                                <i>({{ video.video_time | video_time_format }})</i>
+                            </li>
+                        {% endfor %}
+                        {#					<li>#}
+                        {#						<span></span>#}
+                        {#						<em>事物客观属性研究类</em>#}
+                        {#						<i>（12:43）</i>#}
+                        {#					</li>#}
+                        {#					<li>#}
+                        {#						<span></span>#}
+                        {#						<em>事物客观属性研究类</em>#}
+                        {#						<i>（12:43）</i>#}
+                        {#					</li>#}
+                        {#					<li>#}
+                        {#						<span></span>#}
+                        {#						<em>事物客观属性研究类</em>#}
+                        {#						<i>（12:43）</i>#}
+                        {#					</li>#}
+                        {#					<li>#}
+                        {#						<span></span>#}
+                        {#						<em>事物客观属性研究类</em>#}
+                        {#						<i>（12:43）</i>#}
+                        {#					</li>#}
+                        {#					<li>#}
+                        {#						<span></span>#}
+                        {#						<em>事物客观属性研究类</em>#}
+                        {#						<i>（12:43）</i>#}
+                        {#					</li>#}
+                        {#					<li>#}
+                        {#						<span></span>#}
+                        {#						<em>事物客观属性研究类</em>#}
+                        {#						<i>（12:43）</i>#}
+                        {#					</li>#}
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+        {% ifnotequal courses.paginator.count 0 %}
+        <dl class="com-pages clearfix">
+            <dt>
+                {% if has_previous %}
+                    <a href="?keyword={{ keyword }}&page={{ previous_page_number }}">&lt;上一页</a>
+                {% else %}
+                    <a href="javascript:void(0);">&lt;上一页</a>
+                {% endif %}
+            </dt>
+            {% for page_number in courses.page_range %}
+                {% ifequal page_number courses.number %}
+                    <dd><a class="cur" href="">{{ page_number }}</a></dd>
+                {% else %}
+                    <dd><a href="?keyword={{ keyword }}&page={{ page_number }}">{{ page_number }}</a></dd>
+                {% endifequal %}
+            {% endfor %}
+            <dt>
+                {% if has_next %}
+                    <a href="?keyword={{ keyword }}&page={{ next_page_number }}">下一页&gt;</a>
+                {% else %}
+                    <a href="javascript:void(0);">下一页&gt;</a>
+                {% endif %}
+            </dt>
+        </dl>
+        <p class="con-title">相关知识树</p>
+        {% for cls in classes %}
+        <div class="search-know-tree clearfix">
+			<span class="know-pic">
+                <img src="/static/{{ cls.tree_pic }}">
+            </span>
+			<div class="know-con">
+				<p class="con-tit"><a href="/class/{{ cls.id }}" target="_blank">{{ cls.tree_name }}</a></p>
+				<p class="con-detail">{{ cls.tree_desc }}</p>
+				<p class="con-bot">
+					<span>{{ cls.user_name }}</span>
+					<span>|</span>
+					<span>{{ cls.class_type_name }}</span>
+				</p>
+			</div>
+		</div>
+        {% endfor %}
+            {% else %}
+            <p style="margin-bottom: 350px; color: #0a0a0b; font-size: 28px;">没有找到您搜索的结果</p>
+    {% endifnotequal %}
+    </div>
+{% endblock %}

@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block header_js_css %}
+    <link rel="stylesheet" href="/static/css/AccountSet.css">
+    <script src='/static/js/AccountSet.js'></script>
+    <script src="/static/js/jquery.ajaxfileupload.js"></script>
+    <script src="/static/js/jquery.session.js"></script>
+    <script src="/static/js/jquery.form.js"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="main f-cb">
+        <div class="left f-fl">
+            <div class="caption f-cb">
+                <h3 class="captionLeft f-fl">帐号设置</h3>
+                <div class="captionRight f-fr">
+                    <div class="on myMessage">个人信息</div>
+                    <div class="safe">账号安全</div>
+                </div>
+            </div>
+            <div class="infor">
+                <div>
+                    <span>昵称</span>
+                    <input type="text" class="ui input" id="txtNickName" value="{{ nick_name }}">
+                    {#					<strong>圣骑士</strong>#}
+                    {#					<a href="">修改</a>#}
+                </div>
+                <div>
+                    <span>性别</span>
+                    <label for="man">
+                        <input type="radio" name="sex" value="0" id="man" class='infoRadio'
+                                {% ifequal sex 0 %}
+                               checked="checked"
+                                {% endifequal %}
+                                >&nbsp;男&nbsp;&nbsp;</label>
+                    <label for="woman">
+                        <input type="radio" name="sex" value="1" id="woman" class='infoRadio'
+                                {% ifequal sex 1 %}
+                               checked="checked"
+                                {% endifequal %}
+                                >&nbsp;女</label>
+                </div>
+                <div>
+                    <span>姓名</span>
+                    <input type="text" id="txtFullName" value="{{ full_name }}">
+                </div>
+                <div>
+                    <span>　　</span>
+                    <label for="student">
+                        <input type="radio" name="profession" value="0" class='infoRadio' {% ifequal type 0 %} checked="checked" {% endifequal %}>
+                        &nbsp;学生&nbsp;&nbsp;
+                    </label>
+                    <label for="onduty">
+                        <input type="radio" name="profession" value="1" class='infoRadio' {% ifequal type 1 %} checked="checked" {% endifequal %}>
+                        &nbsp;在职
+                    </label>
+                </div>
+                <div>
+                    <span id="school">{% if type == 0 %} 学校 {% elif type == 1 %} 城市 {% endif %}</span>
+                    <input type="text" id="txtSchool" value="{{ school }}">
+                </div>
+                <div>
+                    <span id="major">{% if type == 0 %} 专业 {% elif type == 1 %} 职业 {% endif %}</span>
+                    <input type="text" id="txtMajor" value="{{ major }}">
+                </div>
+
+                <div id="no" {% ifequal type 1 %} style="display: none" {% endifequal %}>
+                    <span>学号</span>
+                    <input type="text" id="txtNo" value="{{ no }}">
+                </div>
+
+                <div>
+                    <form action="/uploadAvatar/" method="post" id="avatarForm" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <span>头像</span>
+                        <div class="setImg"><span>上传头像</span><input type="file" name="avatar" id="avatarFile" value="">
+                            <input type="hidden" name="picFileName" id="picFileName" value="">
+                        </div>
+                        <p>(支持JPG,PNG,格式的图片，最大2M)</p>
+                    </form>
+                    <img src="/static/{{ pic_file }}" alt="" id="avatarImage" style="width: 200px; height: 200px;">
+                </div>
+                <div>
+                    <input type="button" value="保存" id="save">
+                </div>
+            </div>
+            <div class="inforSafe">
+                {#				<div class='accountBinding'>#}
+                {#					<p>账号绑定</p>#}
+                {#					<p>第三方账号登录,需要绑定账号后，才能进行密码设置或修改</p>#}
+                {#				</div>#}
+                {#				<div>#}
+                {#					<span>登录邮箱</span>#}
+                {#					<input type="text">#}
+                {#				</div>#}
+                {#				<div>#}
+                {#					<span>新密码</span>#}
+                {#					<input type="text">#}
+                {#				</div>#}
+                {#				<div>#}
+                {#					<span>重复新密码</span>#}
+                {#					<input type="text">#}
+                {#				</div>#}
+                {#				<div>#}
+                {#					<span></span>#}
+                {#					<input type="button" value="提交" class="sub">#}
+                {#				</div>#}
+                <div class='changePassword'>
+                    <p>修改密码</p>
+
+                    <p>帐号:{{ mail }}</p>
+                </div>
+                <div>
+                    <span>原密码</span>
+                    <input type="password" id="password">
+                </div>
+                <div>
+                    <span>新密码</span>
+                    <input type="password" id="newPassword">
+                </div>
+                <div>
+                    <span>重复新密码</span>
+                    <input type="password" id="newPasswordRetype">
+                </div>
+                <div>
+                    <span></span>
+                    <input type="button" value="提交" class="sub" id="btnChangePassword" style="color: #fff;">
+                </div>
+            </div>
+        </div>
+    </div>
+    {#    <div class="bottomWrap">#}
+    {#        <div class="bottom">#}
+    {#            <ul>#}
+    {#                <li>北京千字文教育科技有限公司&nbsp;版权所有</li>#}
+    {#                <li>Copyright © 2014-2015, icmooc.cn, All Rights Reserved 京ICP备 14030440号</li>#}
+    {#            </ul>#}
+    {#            <div class='contact'>#}
+    {#                <span>联系我们:</span>#}
+    {#                <img src="/static/images/sinag.png" alt="">#}
+    {#                <img src="/static/images/winxing.png" alt="">#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
+{% endblock %}

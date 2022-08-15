@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block header_js_css %}
+	<link rel="stylesheet" href="/static/css/allTree.css">
+	<script type="text/javascript" src="/static/js/waterfall.js"></script>
+    <script src="/static/js/public.js"></script>
+    <style>
+        h4 {
+            font-weight: normal;
+        }
+    </style>
+{#    <script src="/static/js/jquery.mousewheel.js"></script>#}
+{% endblock %}
+{% block content %}
+	<div class="main">
+		<div class="allTreeTitle">
+			心理学的知识树
+		</div>
+{#		<ul class='allTreeList f-cb'>#}
+{#			<li class='on'>全部</li>#}
+{#			<li>实验</li>#}
+{#			<li>咨询</li>#}
+{#			<li>美食</li>#}
+{#			<li>游戏</li>#}
+{#			<li>应用</li>#}
+{#			<li>我的知识树</li>#}
+{#		</ul>#}
+		<div class='allTreeBox f-cb' id="falls">
+            {% for course in courses %}
+		    <div class="pin">
+		        <div class="box">
+		            <a href="class/{{ course.id }}"><img class='boxImg' src="/static/{{ course.tree_pic }}"/></a>
+		            <div class='imgBottom'>
+		            	<a href="class/{{ course.id }}"><h4>{{ course.tree_name }}</h4></a>
+		            	<p>{{ course.tree_desc }}</p>
+		            	<div class='imgBottomBox'>
+{#		            		<img src="/static/images/guanzhu.png" alt="">#}
+{#		            		<span>{{ course.follow_count }}</span>#}
+{#		            		<img src="/static/images/sc.png" alt="">#}
+{#		            		<span>{{ course.fav_count }}</span>#}
+                            <div class='collectionSpan'>
+{#			            		<div class="allAttention">#}
+{##}
+{#			            		</div>#}
+{#			            		<span>{{ course.follow_count }}</span>#}
+{#			            		<div class="allCollection">#}
+{##}
+{#			            		</div>#}
+{#			            		<span>{{ course.fav_count }}</span>#}
+		            		</div>
+
+		            		<div class='imgContainer f-cb'>
+		            			<img src="/static/{{ course.teacher_pic }}" alt="">
+		            			<ul>
+		            				<li>{{ course.teacher_name }}</li>
+		            				<li>{{ course.tree_class }}</li>
+		            			</ul>
+		            		</div>
+		            	</div>
+		            </div>
+		        </div>
+		    </div>
+            {% endfor %}
+		</div>
+	</div>
+{#    <script>#}
+{#        $(function () {#}
+{#            $("body").bind('mousewheel',  function(event, delta, deltaX, deltaY){#}
+{#                window.onscroll();#}
+{#            });#}
+{#        });#}
+{#    </script>#}
+{% endblock %}

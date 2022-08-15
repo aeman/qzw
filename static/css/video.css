@@ -1,0 +1,1067 @@
+.videoWrap {
+    background: #f9fafc;
+    border-bottom: 1px solid #ededed;
+    padding-bottom: 16px;
+}
+
+.videoBox {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.videoLeft {
+    width: 720px;
+}
+
+.videoRight {
+    width: 278px;
+    border: 1px solid #e3e3e3
+}
+
+.videoBottom {
+    width: 700px;
+    height: 85px;
+    margin-top: 5px;
+}
+
+.videoText {
+    width: 568px;
+    height: 30px;
+    border: 1px solid #d8d8d8;
+    float: left;
+    padding-left: 6px;
+}
+
+.videoSend {
+    background: #48cfae;
+    width: 55px;
+    height: 30px;
+    border: none;
+    float: left;
+    color: #fff;
+    cursor: pointer;
+}
+
+.videoBright {
+    margin: 5px 27px 0 0;
+    position: relative;
+    position: absolute;
+    top: 50%;
+    margin-top: -12px;
+}
+
+.videoBle {
+    margin-top: 13px;
+    width: 700px;
+    position: relative;
+}
+
+.videoAttention img {
+    width: 51px;
+    height: 51px;
+}
+
+.videoAttention div {
+    float: left;
+    margin-left: 10px;
+}
+
+.videoAttention div h5 {
+    width: 184px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+.videoAttention div span {
+    width: 48px;
+    height: 22px;
+    display: inline-block;
+    border: 1px solid #bbbbbd;
+    text-align: center;
+    line-height: 22px;
+    color: #333333;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.videoAttention div b {
+    font-weight: 400;
+}
+
+.videoBright .shareTree img {
+    width: 24px;
+    height: 24px;
+}
+
+.videoBright span {
+    display: inline-block;
+    margin: 0px 5px;
+    padding-left: 26px;
+    cursor: pointer;
+}
+
+.videoBright span:before {
+    content: '';
+    display: inline-block;
+    width: 1px;
+    height: 16px;
+    background: #e0e1e2;
+    position: absolute;
+}
+
+.videoBright .addTree:before {
+    left: 0px;
+    top: 4px
+}
+
+.videoBright .shareTree:before {
+    left: 80px;
+    top: 4px
+}
+
+.videoBright .collectionTree:before {
+    left: 207px;
+    top: 4px
+}
+
+.videoBright .studyOff:before {
+    left: 274px;
+    top: 4px
+}
+
+.videoBright .addTree {
+    height: 24px;
+    line-height: 24px;
+    float: left;
+    background: url(../images/videojia.png) no-repeat 6px 6px;
+}
+
+.videoBright .shareTree {
+    padding-left: 0px;
+}
+
+.videoBright .collectionTree {
+    background: url(../images/videocollect.png) no-repeat 1px 2px;
+}
+
+.videoBottom .videoBright .collectionTreeOver {
+    background: url(../images/collectionover.png) no-repeat 2px 2px;
+    color: #47ccab;
+}
+
+.videoBright .studyOff {
+    background: url(../images/videoShar.png) no-repeat 1px 5px;
+}
+
+.videoBottom .videoBright .studyOffOver {
+    background: url(../images/studyOver.png) no-repeat 2px 6px;
+    color: #ff9d10
+}
+
+.videoBright .shareToDb {
+    display: block;
+}
+
+.videoBright .shareTo .checkboxAfterDb {
+    display: inline-block;
+}
+
+.shareTo {
+    color: #333333;
+}
+
+.shareTo .tree-list {
+    /*height: 250px;*/
+    /*overflow-y: scroll;*/
+    /*overflow-x: visible;*/
+}
+
+.shareTo strong {
+    font-size: 16px;
+    position: absolute;
+    left: 19px;
+    top: 20px;
+    font-weight: 400;
+}
+
+.shareTo .shareToInp {
+    width: 237px;
+    height: 30px;
+    border: 1px solid #cccccc;
+    margin: 52px 0 0px 19px;
+}
+
+.shareTo label {
+    display: block;
+    margin: 8px 0 0 19px;
+}
+
+.shareTo label.inner {
+    position: static;
+    vertical-align: middle;
+    /*display: inline;*/
+    margin: 0px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    width: auto;
+    max-width: 80%;
+    text-overflow: ellipsis;
+}
+
+
+.shareTo label.inner b {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    width: auto;
+    max-width: 80%;
+    text-overflow: ellipsis;
+}
+
+.shareTo div {
+    float: inherit;
+    width: auto;
+    height: auto;
+    position: inherit;
+}
+
+.shareTo label input {
+    vertical-align: middle;
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
+}
+
+.show {
+    display: inline-block;
+}
+
+.shareTo label b {
+    font-size: 14px;
+    color: #333333;
+    font-weight: 400;
+}
+
+.shareTo em {
+    font-size: 16px;
+    color: #333333;
+    font-weight: 400;
+    display: block;
+    width: 106px;
+    height: 27px;
+    text-align: center;
+    line-height: 27px;
+    border: 1px solid #d8d8d8;
+    margin: -10px 0 14px 19px;
+}
+
+.shareTo .checkboxAfter em {
+    margin: 15px 0 15px 19px;
+}
+
+.page-range * {
+    padding: 0px 5px 0px 5px;
+}
+
+.page-range a.active {
+    background: #bbbbbb;
+    color: #ffffff;
+}
+
+.shareTo {
+    position: absolute;
+    width: 284px;
+    background: #fff;
+    border: 1px solid #dadada;
+    position: relative;
+    left: 0px;
+    top: 35px;
+    height: auto;
+    z-index: 10;
+    display: none;
+}
+
+.shareTo label .checkboxAfter div {
+    position: absolute;
+    border: 1px solid #dbdbdb;
+    width: 284px;
+    left: 0px;
+    top: -49px;
+    background: #ffffff;
+}
+
+.shareTo label div ul {
+    margin: 15px 0 0 19px;
+}
+
+.shareTo .checkboxAfter {
+    display: inline-block;
+    margin-left: 10px;
+    position: relative;
+    display: none;
+    z-index: 99
+}
+
+.shareTo label .checkboxAfter .arrowLeft {
+    width: 8px;
+    height: 17px;
+    background: url(../images/arrowLeft.png) no-repeat;
+    position: absolute;
+    border: none;
+    left: -8px;
+    top: 34px;
+}
+
+.shareTo label {
+    position: relative;
+}
+
+.shareTo div.arrowTopIcon {
+    position: absolute;
+    background: url(../images/arrowTop.jpg) no-repeat;
+    width: 24px;
+    height: 13px;
+    left: 36px;
+    top: -13px;
+}
+
+.videoPing {
+    float: left;
+    background: #dadada;
+    width: 66px;
+    height: 30px;
+    border: none;
+    color: #121417;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.column img {
+    margin: 10px;
+    vertical-align: top;
+    float: left;
+}
+
+.column div {
+    float: left;
+    width: 130px;
+    margin-top: 10px;
+    line-height: 24px;
+}
+
+.column a {
+    display: block;
+    width: 255px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    float: left;
+    margin-left: 10px;
+    font-size: 18px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.column a.focused {
+    background-color: #fff;
+    color: rgb(181, 181, 181);
+}
+
+.listBoxTitle {
+    border-bottom: 2px solid #48cfae;
+    border-top: 1px solid rgb(227, 227, 227);
+    margin-top: 17px;
+}
+
+.listBoxTitle span {
+    width: 276px;
+    height: 40px;
+    text-indent: 10px;
+    line-height: 40px;
+    float: left;
+    font-size: 18px;
+    color: #48cfae;
+}
+
+.columnBox ul {
+    margin: 8px 0 8px;
+}
+
+.columnBox li {
+    border-bottom: 1px solid #ecedef;
+    width: 252px;
+    height: 35px;
+    line-height: 35px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.columnBox .lastOne {
+    border: none;
+}
+
+.columnBox li span {
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    width: 168px;
+}
+
+.columnBox li.columnBoxOver {
+    color: #999999;
+}
+
+.columnBox li.columnBoxOn {
+    color: #48cfae;
+}
+
+.columnBox li.columnBoxNot {
+    color: #333333;
+}
+
+.columnBox li strong {
+    float: right;
+    font-weight: 400;
+}
+
+.BarrageBox p {
+    border-bottom: 1px solid #ecedef;
+    width: 252px;
+    height: 22px;
+    margin-bottom: 12px;
+    margin: 20px 0 0 12px;
+    float: left;
+}
+
+.BarrageBox span {
+    float: left;
+}
+
+.BarrageBox strong {
+    float: right;
+}
+
+.BarrageBox ul {
+    margin: 20px 0 0 12px;
+}
+
+.BarrageBox li {
+    border-bottom: 1px solid #ecedef;
+    width: 252px;
+    height: 22px;
+    margin-bottom: 12px;
+    float: left;
+}
+
+.main {
+    padding-top: 36px;
+}
+
+.left {
+    width: 678px;
+}
+
+.mainNav {
+    border-bottom: 1px solid #e2e2e2;
+    padding-bottom: 10px;
+}
+
+.mainNavLeft .on {
+    color: #48cfae
+}
+
+.mainNavLeft span.first {
+    margin-right: 56px;
+}
+
+.mainNavLeft span.first:after {
+    content: "";
+    width: 1px;
+    height: 16px;
+    background: #cccccc;
+    position: absolute;
+    left: 105px;
+    top: 6px;
+}
+
+.mainNavRight .on {
+    color: #ffb43f
+}
+
+.mainNavRight {
+    position: relative;
+    margin-right: 15px;
+    height: 28px;
+    line-height: 28px;
+}
+
+.mainNavRight span.first:after {
+    left: 50px;
+    top: 7px;
+}
+
+.mainNavRight span.first:before {
+    content: "";
+    width: 1px;
+    height: 16px;
+    background: #cccccc;
+    position: absolute;
+    right: 120px;
+    top: 7px;
+}
+
+.mainNavRight span.first {
+    margin-right: 38px;
+}
+
+.mainNavRight span:after {
+    content: "";
+    width: 1px;
+    height: 16px;
+    background: #cccccc;
+    position: absolute;
+    left: 112px;
+    top: 7px;
+}
+
+.mainNavLeft {
+    font-size: 20px;
+    position: relative;
+}
+
+.videTestList .videoTestLi {
+    margin-top: 30px;
+    width: 678px;
+    float: left;
+}
+
+.videoface img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    margin-top: 5px;
+}
+
+.faceBox {
+    width: 606px;
+    margin-left: 6px;
+}
+
+.faceBox h2 {
+    font-size: 18px;
+    color: #333333;
+}
+
+.faceAnswer {
+    color: #666666;
+    margin-top: 14px;
+    line-height: 30px;
+}
+
+.faceMessage {
+    color: #999999;
+    margin-top: 21px;
+}
+
+.faceMessage span {
+    margin-right: 8px;
+}
+
+.faceMessage .goodAnswer {
+    margin-right: 36px;
+}
+
+.nice {
+    background: url(../images/zan.jpg) no-repeat;
+    padding-left: 26px;
+    cursor: pointer;
+}
+
+.faceMessage .niceover {
+    background: url(../images/zanover.png) no-repeat;
+    padding-left: 26px;
+    color: #3ac19d;
+}
+
+.message {
+    background: url(../images/message.jpg) no-repeat;
+    padding-left: 26px;
+    cursor: pointer;
+}
+
+.firstAnswer {
+    border-bottom: 1px solid #e6e6e6;
+    padding-bottom: 14px;
+}
+
+.secondAnswer {
+    width: 608px;
+    margin-top: 18px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.otherVideoface img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    margin-top: 5px;
+}
+
+.secondAnswerList {
+    width: 560px;
+    color: #666;
+}
+
+.secondAnswerList li {
+    margin: 0 0 15px 0;
+}
+
+.faceMessageOther {
+    width: 560px;
+    color: #999999;
+    padding-bottom: 16px;
+}
+
+.faceMessageOther span {
+    margin-right: 9px;
+}
+
+.faceMessageOther span.time {
+    margin-right: 261px;
+}
+
+.otherAnswer {
+    margin-top: 12px;
+    width: 560px;
+}
+
+.otherAnswerBox {
+    width: 514px;
+    height: 138px;
+    border: 1px solid #e5e5e5
+}
+
+.otherAnswer button {
+    width: 83px;
+    height: 34px;
+    border: 1px solid #eaeaea;
+    background: none;
+    float: right;
+    margin-top: 10px;
+}
+
+.right {
+    width: 280px;
+}
+
+.recommend {
+    padding-bottom: 17px;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.recommend ul {
+    margin: 20px 0 0 20px;
+}
+
+.recommend li {
+    list-style: disc;
+    color: #666666;
+    margin-bottom: 15px;
+}
+
+.recommendTitle {
+    font-size: 20px;
+    color: #333333;
+    font-weight: normal;
+    margin-bottom: 26px;
+}
+
+.contactTree {
+    margin-top: 28px;
+    border-bottom: 1px solid #dcdcdc;
+    padding-bottom: 20px;
+}
+
+.contactTree .column img {
+    margin-left: 0px;
+}
+
+.OfferReward {
+    margin-top: 42px;
+}
+
+.OfferReward input {
+    border: 1px solid #e5e5e5
+}
+
+.OfferReward span {
+    color: #333333;
+    display: inline-block;
+    width: 42px;
+    margin-right: 6px;
+}
+
+.headline input {
+    width: 500px;
+    height: 28px;
+}
+
+.OfferReward div {
+    margin-bottom: 21px;
+}
+
+.contentBox input {
+    width: 626px;
+    height: 130px;
+    display: inline-block;
+}
+
+.discuss select {
+    color: #333333;
+    margin-right: 20px;
+    border: 1px solid #e5e5e5
+}
+
+.offerPoints p {
+    margin: 14px 0 0 48px;
+}
+
+.offerPoints p span {
+    width: 17px;
+    color: #ff0000;
+    margin-right: 0px;
+}
+
+.sub {
+    width: 106px;
+    height: 50px;
+    background: #48cfae;
+    margin: 46px 0 60px 0;
+}
+
+.testBox {
+    width: 677px;
+    margin-top: 30px;
+}
+
+.testBox h3 {
+    width: 677px;
+    height: 40px;
+    background: url(../images/arrow.png) no-repeat 12px 15px #ebebeb;
+    line-height: 40px;
+    padding-left: 37px;
+    position: relative;
+}
+
+.testBox h3 img {
+    position: absolute;
+    right: 16px;
+    top: 13px;
+}
+
+.testBoxBefore {
+    border: 1px solid #e5e5e5;
+    padding-bottom: 10px;
+}
+
+.testBoxBefore ul {
+    margin: 20px 0 18px 36px;
+    border-bottom: 1px solid #e4e4e4;
+    width: 622px;
+    background: url(../images/Error.png) no-repeat 470px 35px;
+}
+
+.testBoxBefore ul li {
+    margin-bottom: 14px;
+}
+
+.testBoxBefore p strong {
+    color: #999999;
+    font-weight: normal;
+}
+
+.testBoxBefore p {
+    color: #333;
+    margin-left: 34px;
+    margin-bottom: 15px;
+}
+
+.testBoxBefore p b {
+    font-weight: normal;
+}
+
+.testBoxAfter {
+    border: 1px solid #e5e5e5;
+    padding-bottom: 10px;
+}
+
+.cbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.testBoxAfter label {
+    display: block;
+    margin-left: 30px
+}
+
+.testBoxAfter label input {
+    margin-top: 10px;
+}
+
+.testBoxAfter label b {
+    font-weight: normal;
+}
+
+.testBoxAfter span {
+    display: block;
+    width: 95px;
+    height: 36px;
+    border: 1px solid #eaeaea;
+    line-height: 36px;
+    text-align: center;
+    margin: 36px 0 17px 32px;
+}
+
+.videoTitle {
+    font-size: 24px;
+    color: #000000;
+    height: 62px;
+    line-height: 62px;
+}
+
+#v1 {
+    width: 700px;
+    height: 528px;
+    border: 1px solid red;
+}
+
+#div1 {
+    width: 300px;
+    height: 30px;
+    background: #666;
+    overflow: hidden;
+    position: relative;
+}
+
+#div2 {
+    width: 60px;
+    height: 30px;
+    background: red;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#div3 {
+    width: 300px;
+    height: 10px;
+    background: #666;
+    overflow: hidden;
+    position: relative;
+    top: 10px;
+}
+
+#div4 {
+    width: 60px;
+    height: 10px;
+    background: yellow;
+    position: absolute;
+    left: 240px;
+    top: 0;
+}
+
+.videoRight div {
+    color: rgb(51, 51, 51);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#treeTitle {
+    text-align: left;
+}
+
+#treeTitleA {
+    display: inline-block;
+    width: 120px;
+    height: 96px;
+    margin-left: 0px;
+}
+
+#imgFlag {
+    float: left;
+    margin-left: 5px;
+    margin-top: 8px;
+    margin-right: 5px;
+}
+
+.columnBox {
+    height: 186px;
+    overflow-y: auto;
+}
+
+.shareTo label .checkboxAfter li {
+    margin-top: 8px;
+}
+
+.shareTo label .checkboxAfter div.course-edit {
+    position: static;
+    width: auto;
+    border: none;
+    margin: 15px 0px 20px 19px;
+    display: none;
+}
+
+.shareTo label .checkboxAfter div.course-edit input {
+    width: 155px;
+    height: 25px;
+    border: 1px solid rgb(222, 222, 222);
+    line-height: 25px;
+    padding-left: 5px;
+    margin-right: 0px;
+    font-size: 14px;
+}
+
+.shareTo label .checkboxAfter div.course-edit button {
+    text-align: center;
+    padding: 2px 5px 2px 5px;
+    position: relative;
+    height: 25px;
+    top: 1px;
+}
+
+@media (orientation: portrait) {
+
+    .columnBox {
+        height: auto;
+        overflow-y: visible;
+    }
+
+    .videoRight {
+        float: left;
+        margin: 20px 2% 20px 2%;
+        clear: both;
+        width: 96%;
+    }
+
+    .column a.btn {
+        clear: both;
+        margin-left: 2%;
+        width: 96%;
+    }
+
+    .videoLeft {
+        width: 100%;
+        height: 56%;
+    }
+
+    #treeTitle {
+        margin-top: 0px;
+        font-size: 3.5rem;
+        width: 100%;
+        height: 96px;
+        line-height: 96px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    #treeTitleA {
+        width: 75%;
+    }
+
+    /*#playercontainer {*/
+    /*width: 100%;*/
+    /*}*/
+    #playercontainer video {
+        width: 100%;
+        height: 56%;
+    }
+
+    .columnBox li {
+        width: 80%;
+        height: 6.5rem;
+        line-height: 6.5rem;
+        font-size: 3rem;
+    }
+
+    .columnBox li span {
+        display: inline-block;
+        width: 80%;
+        height: 6.5rem;
+        line-height: 6.5rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .columnBox li strong {
+
+    }
+
+    .column.f-cb .btn {
+        height: 4.5rem;
+        line-height: 4.5rem;
+        font-size: 2rem;
+    }
+
+    #imgFlag {
+        margin-top: 1.75rem;
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .listBoxTitle {
+        height: 6.5rem;
+        line-height: 6.5rem;
+    }
+
+    .listBoxTitle span {
+        font-size: 3rem;
+        height: 6.5rem;
+        line-height: 6.5rem;
+
+    }
+
+    .videoTitle {
+        font-size: 3.5rem;
+        width: 100%;
+        margin: 1rem 0 1rem 0;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .bottomPos {
+        position: relative;
+        top: 2rem;
+    }
+
+    .videoBle {
+        height: 4rem;
+    }
+
+    .videoBright {
+        top: 0px;
+    }
+
+    .shareTree {
+        font-size: 3rem;
+        display: inline-block;
+        height: 4rem;
+        line-height: 4rem;
+    }
+
+    .videoBright .shareTree img {
+        width: 42px;
+        height: 42px;
+    }
+
+}

@@ -1,0 +1,347 @@
+{% extends 'base.html' %}
+
+{% block header_js_css %}
+    <link rel="stylesheet" href="/static/css/tree.css">
+    <link rel="stylesheet" href="/static/css/video.css">
+    <style>
+        span.prev {
+            padding-left: 5px;
+            font-size: 14px;
+            position: static;
+        }
+        span.prev:before {
+            width: 0px;
+        }
+        span.next {
+            padding-left: 5px;
+            font-size: 14px;
+            position: static;
+        }
+        span.next:before {
+            width: 0px;
+        }
+    </style>
+    <script>
+        $(function () {
+            $('.addTree').click(function () {
+{#                alert('111');#}
+                if ($('#userId').text() == '') {
+                    $('.hdLoginOn').click();
+                    return;
+                }
+                $('.shareTo').toggleClass('shareToDb');
+                var obj = {};
+                getDataByPage(obj)
+            });
+
+            function getDataByPage(obj) {
+                var $ele = $('.tree-list');
+                var page_no = 1;
+{#                alert(obj.dataset);#}
+                if (obj.dataset != undefined) {
+                    page_no = obj.dataset.no;
+                }
+                {#                alert($(obj).html());#}
+                {#                alert("/videos/search2/" + $ele.find('.txtSearch').val() + '/' + $(obj).html());#}
+                $.getJSON("/course/list_knowtrees/" + $('#videoUploadId').val() + '/' + page_no, function (data, status) {
+                    if (status == 'success') {
+                        {#                        alert(data);#}
+                        {#                        alert($(obj).html());#}
+                        {#                        alert(JSON.parse(data[0]).canNext);#}
+                        {#                        alert(JSON.parse(data[0]).canPrev);#}
+                        {#                        alert(JSON.parse(data[0]).pageList);#}
+                        var pageRange = "";
+                        var pagePrev = '<a href="javascript:void(0);" class="prev" data-no="' + (parseInt(page_no) - 1) + '">上一页</a>';
+                        var pageNext = '<a href="javascript:void(0);" class="next" data-no="' + (parseInt(page_no) + 1) + '">下一页</a>';
+                        if (JSON.parse(data[0]).canNext == 'False') {
+                            pageNext = '<span class="next">下一页</span>';
+                        }
+                        if (JSON.parse(data[0]).canPrev == 'False') {
+                            pagePrev = '<span class="prev">上一页</span>';
+                        }
+                        $.each(JSON.parse(JSON.parse(data[0]).pageList), function (i, item) {
+                            {#                            alert(JSON.parse(JSON.parse(data[0]).pageList)[i]);#}
+                            var pageNo = JSON.parse(JSON.parse(data[0]).pageList)[i];
+                            if (page_no == pageNo) {
+                                pageRange += '<a href="javascript:void(0);" class="active" data-no="' + pageNo + '">' + pageNo + '</a>';
+                            } else {
+                                pageRange += '<a href="javascript:void(0);" data-no="' + pageNo + '">' + pageNo + '</a>';
+                            }
+                        })
+                        {#                    $ele.find(".lblSearch").remove();#}
+                        {#                    $ele.find(".ui.checkbox.s_videos").remove();#}
+                        {#                    $ele.find(".s_content").parent().find("br").remove();#}
+                        {#                    $ele.find(".s_content").after("<br><br><label class=\"lblSearch\">搜索到以下内容：</label>");#}
+                        data.shift();
+                        {#                        alert(data.length)#}
+                        {#                        alert(data);#}
+                        var s_v = ""
+                        $.each(data, function (i, item) {
+{#                            alert(JSON.stringify(data[i]));#}
+                            {#                        s_v += "<p><div class=\"ui checkbox\"><input data-name=\"" + data[i].fields.video_name +#}
+                            {#                                "\" data-url=" + data[i].fields.video_url + " data-uid=" + data[i].pk + " data-time=" + data[i].fields.video_time + " type=\"checkbox\" id=fun" + $ele.index() + i +#}
+                            {#                                " name=\"fun" + i + "\"><label for=\"fun" + $ele.index() + i + "\">"#}
+                            {#                                + data[i].fields.video_name + "</label></div></p>";#}
+                            s_v += '<label for=""><input type="hidden" id="tree' + data[i].pk + '" data-id="' +
+                                    data[i].pk + '" class="addTreeCheck">' +
+                                    '<label for="tree' + data[i].pk + '" class="inner">' + data[i].fields.tree_name + ' </label>';
+
+                            s_v += '<div class="checkboxAfter"> <div> <div class="arrowLeft"></div> <ul>'
+                            $.each(data[i].courses, function(j, item) {
+                                s_v += '<li>' +
+                                            '<input type="checkbox" name="" ' + data[i].courses[j].course_checked + ' class="course-item" ' +
+                                                   'id="course' + data[i].courses[j].course_id + '" ' +
+                                                   'data-id="' + data[i].courses[j].course_id + '">' +
+                                            '<label for="course' + data[i].courses[j].course_id + '" ' +
+                                                   'class="inner">' + data[i].courses[j].course_name + ' </label>' +
+                                        '</li>'
+                            });
+                            s_v += '</ul>' +
+                                            '<em class="course-new">新建知识点</em>' +
+                                            '<div class="course-edit">' +
+                                                '<input type="text" class="txtCourse" placeholder="新知识点名称">' +
+                                                '<button class="btnNewCourse">保存</button>' +
+                                                '<button class="btnCancel">取消</button>' +
+                                            '</div>' +
+                                        '</div>' +
+                                    '</div>'
+
+                            s_v += '</label>'
+                        });
+                        s_v += "<br>"
+                        s_v += '<div class="page-range">' + pagePrev + pageRange + pageNext + "</div><br><br>"
+                        {#                    $ele.find(".lblSearch").append(s_v);#}
+{#                        alert(s_v);#}
+                        $ele.empty();
+                        $ele.append(s_v);
+                        $('.page-range a').click(function () {
+                            getDataByPage(this);
+                        });
+                    }
+                });
+            };
+
+
+        });
+    </script>
+    <script src="/static/js/video.js"></script>
+    <script src="/static/js/dialog.js"></script>
+{% endblock %}
+
+
+{% block content %}
+    <div class="videoWrap f-cb">
+        <input type="hidden" id="classId" value="{{ class_tree.id }}">
+        <input type="hidden" id="videoId" value="{{ video.id }}">
+        <input type="hidden" id="videoUploadId" value="{{ video.upload_id }}">
+
+        <div class="videoBox f-cb">
+            <div class='videoTitle'>
+                {{ video.video_name }}
+            </div>
+
+            <div class='videoLeft f-fl' id="videoPlay">
+                <div id="playercontainer">
+                    <video width="700" height="394" controls="controls" id="video" style="background: #000000;">
+                        <source src="{{ video.video_url }}" type="video/mp4"/>
+                    </video>
+                </div>
+                <div class='videoBottom f-cb'>
+                    <div id="userId" style="display: none;">{{ user.id }}</div>
+                    <div class='f-fl videoBle'>
+                        <div class="videoBright f-fl">
+                            <span class="addTree">添加到</span>
+
+                            <div class="bdsharebuttonbox" style="float: left; margin-left: 5px; line-height: 24px;">
+							<span class='shareTree'>
+                                分享到
+                                <img data-cmd="qzone" src="/static/images/qq.jpg" alt="">
+                                <img data-cmd="tsina" src="/static/images/sina.jpg" alt="">
+                                <img data-cmd="weixin" src="/static/images/winxin.jpg" alt="">
+							</span>
+                            </div>
+                            <div class="shareTo">
+                                <div class="arrowTopIcon"></div>
+                                <strong>添加知识树</strong>
+                                <br><br><br>
+
+                                <div class="tree-list">
+{#                                    {% for tree in myTreeList %}#}
+{#                                        <label for="">#}
+{#                                            <input type="checkbox" id="tree{{ tree.id }}" data-id="{{ tree.id }}"#}
+{#                                                   class="addTreeCheck">#}
+{#                                            <label for="tree{{ tree.id }}"#}
+{#                                                   class="inner"><b>{{ tree.tree_name }} </b></label>#}
+{##}
+{#                                            <div class="checkboxAfter">#}
+{#                                                <div>#}
+{#                                                    <div class="arrowLeft"></div>#}
+{#                                                    <ul>#}
+{#                                                        {% for course in tree.courseList %}#}
+{#                                                            <li>#}
+{#                                                                <input type="checkbox" name="" class="course-item"#}
+{#                                                                       id="course{{ course.id }}"#}
+{#                                                                       data-id="{{ course.id }}">#}
+{#                                                                <label for="course{{ course.id }}"#}
+{#                                                                       class="inner"><b>{{ course.course_name }} </b></label>#}
+{#                                                            </li>#}
+{#                                                        {% endfor %}#}
+{#                                                    </ul>#}
+{#                                                    <em class="course-new">新建知识点</em>#}
+{##}
+{#                                                    <div class="course-edit">#}
+{#                                                        <input type="text" class="txtCourse" placeholder="新知识点名称">#}
+{#                                                        <button class="btnNewCourse">保存</button>#}
+{#                                                        <button class="btnCancel">取消</button>#}
+{#                                                    </div>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </label>#}
+{#                                    {% endfor %}#}
+                                </div>
+                                {#                                <label for="">#}
+                                {#                                    <input type="checkbox" name="" id="" class="addTreeCheck"> <b>幸福心理学 </b>#}
+                                {##}
+                                {#                                    <div class="checkboxAfter">#}
+                                {#                                        <div>#}
+                                {#                                            <div class="arrowLeft"></div>#}
+                                {#                                            <ul>#}
+                                {#                                                <li>#}
+                                {#                                                    <input type="checkbox" name="" id=""> <b>恋爱心理学 </b>#}
+                                {#                                                </li>#}
+                                {#                                                <li>#}
+                                {#                                                    <input type="checkbox" name="" id=""> <b>恋爱心理学 </b>#}
+                                {#                                                </li>#}
+                                {#                                            </ul>#}
+                                {#                                            <em>新建知识点</em>#}
+                                {#                                        </div>#}
+                                {#                                    </div>#}
+                                {#                                </label>#}
+                                <em id="goNewTree">新建知识树</em>
+                            </div>
+                            {#                            <span class='collectionTree'>收藏</span>#}
+                            {#                            <span class='studyOff {% if ifStudied %} studyOffOver {% endif %}'>学过</span>#}
+                        </div>
+                        {#                        <div class="videoAttention  f-fr">#}
+                        {#                            <div>#}
+                        {#                                <a href="/class/{{ class_tree.id }}"><img src="/static/{{ class_tree.tree_pic }}"#}
+                        {#                                                                          alt=""></a>#}
+                        {#                            </div>#}
+                        {#                            <div>#}
+                        {#                                <a href="/class/{{ class_tree.id }}"><h5>{{ class_tree.tree_name }}</h5></a>#}
+                        {#                                {% if follow_flag %}#}
+                        {#                                    <span id="attention">已关注</span>#}
+                        {#                                {% else %}#}
+                        {#                                    <span id="attention">关注</span>#}
+                        {#                                {% endif %}#}
+                        {#                                <b id="follow_count">{{ class_tree.follow_count }}</b>#}
+                        {#                            </div>#}
+                        {#                        </div>#}
+                    </div>
+                </div>
+            </div>
+            <div class='videoRight f-fr'>
+                <!-- <div class='column f-cb'>
+                    <img src="/static/images/video.jpg" alt="">
+                    <div>变态心理学知识与变态心理学知识</div>
+                    <a class='btn'>关注该知识树</a>
+                </div> -->
+                {% ifnotequal class_tree None %}
+                    <div class="column f-cb">
+                        <a href="/class/{{ class_tree.id }}" style="display: inline-block; width: 130px; height: 96px;"><img
+                                src="/static/{{ class_tree.tree_pic }}" alt=""
+                                style="width: 110px; height: 76px;">
+                        </a>
+                        <a id="treeTitleA" href="/class/{{ class_tree.id }}">
+                            <div id="treeTitle">{{ class_tree.tree_name }}</div>
+                        </a>
+                        {% ifequal followFlag 1 %}
+                            <a class="btn">关注该知识树</a>
+                        {% else %}
+                            <a class="btn focused">取消关注该知识树</a>
+                        {% endifequal %}
+                    </div>
+                {% endifnotequal %}
+                <div class="listBox ">
+                    <div class="listBoxTitle f-cb" {% ifequal class_tree None %}
+                         style="margin-top: 0px;" {% endifequal %}>
+                        <span class='on column'>目录</span>
+                        <!-- <span class='barrage'>弹幕</span> -->
+                    </div>
+                    <div class='columnBox' {% ifequal class_tree None %} style="height: 350px;" {% endifequal %}>
+                        <ul>
+                            {% for video in videos %}
+                                <a href="/video/{{ video.id }}" data-id="{{ video.id }}">
+                                    <img id="imgFlag" src="/static/images/video_status_{{ video.play_times }}.png">
+                                    <li class='columnBoxOver'>
+                                        <span>{{ video.video_name }}</span>
+                                        <strong>{{ video.original_name }}</strong>
+                                    </li>
+                                </a>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <img src="/static/{{ videoPic }}" id="videoPic" style="display: none;">
+
+    <script>window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdMiniList": false,
+            "bdPic": document.getElementById("videoPic").src,
+            "bdStyle": "0",
+            "bdSize": "16"
+        },
+        "share": {}
+    };
+    with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+    </script>
+    <script>
+        var videoPlayer = document.getElementById("video");
+        videoPlayer.ontimeupdate = function () {
+            {#            $('.videoTitle').html(videoPlayer.currentTime + '   ' + videoPlayer.duration);#}
+            var currentTime = Math.floor(videoPlayer.currentTime);
+            if (currentTime % 10 == 0) {
+                console.log('set video time ...');
+                $.post("/setVideoTime/" + $('#videoId').val() + "/" + currentTime, function (data) {
+                    console.log('set video time success');
+                });
+                {#                alert($("a[data-id={{ video.id }}]").html());#}
+{#                alert($("a[data-id={{ video.id }}] img").attr("src"));#}
+                if ($("a[data-id={{ video.id }}] img").attr("src") == "/static/images/video_status_2.png") {
+                    $("a[data-id={{ video.id }}] img").attr("src", "/static/images/video_status_0.png");
+                }
+
+            }
+            if (videoPlayer.currentTime == videoPlayer.duration) {
+                console.log('set video flag ...');
+                $.post("/setVideoFlag/" + $('#videoId').val(), function (data) {
+                    console.log('set video flag success');
+                    $('.studyOff').addClass('studyOffOver');
+                    if (data.result) {
+                        if (data.nextVideoUrl != "") {
+                            window.location.href = data.nextVideoUrl;
+                        }
+                    }
+                });
+                $("a[data-id={{ video.id }}] img").attr("src", "/static/images/video_status_1.png");
+            }
+        };
+
+        $(function () {
+            var videoPlayer = document.getElementById("video");
+            window.onload = function () {
+                videoPlayer.currentTime = {{ videoCurrentTime }};
+                if ({{ autoPlay }}) {
+                    videoPlayer.play();
+                }
+            }
+        });
+
+    </script>
+{% endblock %}

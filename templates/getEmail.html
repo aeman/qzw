@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="/static/css/base.css">
+	<link rel="stylesheet" href="/static/css/getPassword.css">
+</head>
+<body>
+	<div class="headerWrap">
+		<div class="header f-cb">
+			<div class="headerLeft f-fl">
+				<img src="images/logo.png" alt="">
+			</div>
+			<div class="headerRight f-fr">
+				<ul class='headerList'>
+					<li><a href="">首頁</a></li>
+					<li><a href="">全部知识树</a></li>
+					<li><a href="">我的知识树</a></li>
+					<li><input type="text" class='hdSearch'><div class='searchIcon'></div></li>
+					<li class='hdLogin'><a href="">登录</a></li>
+					<li class='hdLogin'><a href="">注册</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="main f-cb">
+		<div class="left f-fl">
+			<div class="caption f-cb">
+				<h3 class="captionLeft f-fl">验证信息</h3>
+			</div>
+			<div class="emailBox">
+				<p>一封验证邮件已经发送到{{ mail }}, 请点击邮件中的链接以完成密码找回</p>
+{#				<div><a href="">立即查看邮件</a><a href="" class="noEmail">没有收到邮件?</a></div>#}
+			</div>
+			<div class="noEmailBox">
+				<h4>没有收到邮件？</h4>
+				<ul>
+					<li>请查看下垃圾邮件中是否有验证邮件？</li>
+					<li>如果还没有，请<a href="/retakePassword/">重新发送</a></li>
+				</ul>
+			</div>
+		</div>		
+	</div>
+	<div class="bottomWrap">
+		<div class="bottom">
+			<ul>
+				<li>北京千字文教育科技有限公司&nbsp;版权所有</li>
+				<li>Copyright © 2014-2015, icmooc.cn, All Rights Reserved 京ICP备 14030440号</li>
+			</ul>
+			<div class='contact'>
+				<span>联系我们:</span>
+				<img src="images/sinag.png" alt="">
+				<img src="images/winxing.png" alt="">
+			</div>
+		</div>
+	</div>
+</body>
+</html>

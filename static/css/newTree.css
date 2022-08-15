@@ -1,0 +1,99 @@
+.newControl{font-size: 24px;color: #333;margin: 28px 0;}
+.treeName span{font-size: 16px;color: #333333;margin-right: 10px;}
+.treeName input{width: 238px;height: 34px;border: 1px solid #e5e5e5}
+.treeName strong{margin-left: 18px;font-size: 18px;font-weight: 400;cursor: pointer;}
+.treeMange{width: 320px;color: #333333;}
+.treeMange h2{font-size: 16px;font-weight: 400;}
+.treeMange li{float: left;width: 149px;height: 26px;border: 1px solid #dbdbdb}
+.treeDrag{position: relative;}
+.treeDrag h2{position: absolute;right: 252px;top: 83px;font-size: 16px;font-weight: 400;}
+.dragBox{box-shadow: 0 2px 5px #888;cursor: pointer;background: #fff;}
+.dragBoxAdd {box-shadow: 0 2px 5px #888;cursor: pointer;background: #fff;float: left;margin: 0 0px 10px 34px}
+.dragBoxList .dragBoxAdd h3{color: #28bbb2;width: 149px;height: 26px;border: 1px solid #dbdbdb;font-weight: 400;line-height: 26px;position: relative;text-indent: 12px;background: #fff;cursor: pointer;} 
+.dragBox h3{width: 149px;height: 26px;border: 1px solid #dbdbdb;font-weight: 400;line-height: 26px;position: relative;text-indent: 12px;background: #fff;cursor: pointer;}
+.dragBox h3 div.editDialog{position:absolute;background:url(../images/editDrag.png) no-repeat;width: 16px;height: 16px;right: 4px;top: 4px;cursor: pointer;}
+.dragBoxAdd h3 div.addDialogkno{position:absolute;background:url(../images/add.png) no-repeat;width: 18px;height: 18px;right: 4px;top: 4px;cursor: pointer;}
+.dragBox h3 div.delectDialog{background:url(../images/delet1.png) no-repeat 2px 2px;position:absolute;width: 16px;height: 16px;right: 4px;top: 4px;cursor: pointer;}
+.dragBox ul{cursor: pointer;background: #fff;}
+.dragBox ul li{margin: 10px 0 10px 10px;cursor: pointer;}
+.dragBoxList{width: 366px;margin:125px 0 0 -46px;}
+.dragBoxList .dragBox{float: left;margin: 0 0px 10px 34px}
+.treeDrag .dragBoxList .dragBoxOn{position: absolute;margin: 0px;z-index: 10}
+.introduction h4{font-size: 18px;font-weight: 400;}
+.introduction textarea{width: 1000px;height: 159px;border: 1px solid #e5e5e5;margin-top: 12px;}
+.checkImg{margin-top: 20px;line-height: 34px;}
+.checkImg span{margin-right: 12px;font-size: 16px;}
+.checkImg input{opacity: 0;filter:alpha(opacity=0);width: 100px;height: 34px;}
+.checkImg .checkImgInp{width: 100px;height: 34px;border: 1px solid #bfbfbf;display: inline-block;}
+.checkImg b{color: #b5b5b5;margin-left: 18px;font-weight: 400;}
+.checkImgBox{margin-top: 20px;}
+.checkImgBox ul{margin:24px 0 0 142px;}
+.checkImgBox ul li{line-height: 24px;}
+.checkImgBox .on{color: #ff6371}
+.checkImgName{border-bottom: 1px solid #dcdcdc}
+.checkImgName strong{font-size: 16px;font-weight: 400;margin-right: 10px;}
+.checkImgName select{width: 198px;height: 34px;border: 1px solid #e5e5e5;margin: 39px 0;color: #666666;}
+.pubTop{color: #ff6371;margin: 44px 0 11px 0;padding-left: 438px;}
+.pubBottom{padding-left: 404px;margin-bottom: 88px;}
+.pubBottom span{display: inline-block;background: #48cfae;width: 200px;height: 50px;text-align: center;line-height: 50px;font-size: 18px;color: #ffffff;cursor: pointer;}
+.pubBottom a{color: #b5b5b5;text-decoration: underline;margin-left:14px;}
+.addTreeDialog{width: 680px;margin: 0 auto;position: relative;padding-bottom: 64px;background: #fff;height: 650px;overflow-y:auto;}
+.addTreeHead{height: 50px;background: #dff1fa;text-indent: 24px;line-height: 50px;font-size: 20px;}
+.addDialogName{margin-top: 22px;background: url(../images/TreeTrue.png) no-repeat 30px 15px;padding-left: 50px;}
+.addDialogName input{width: 240px;height: 36px;border: 1px solid #d2d2d2;text-indent: 10px;}
+.addTreeDialog ul{margin:5px auto 0;width: 622px; }
+.addTreeDialog ul li{width: 622px;height: 42px; border-bottom: 1px solid #e4e4e4;line-height: 42px;}
+.addVideo{margin:11px 5px 0 0;}
+.addDelect,.addbottom,.addTop{margin: 11px 9px 0 0;cursor: pointer;}
+.dialogTab{border: 1px solid #e2e2e2;padding: 0 30px 24px 0;margin: 20px auto 0;width: 622px;}
+.tabHead span{display: inline-block;width: 128px;height: 39px;border-right: 1px solid #e2e2e2;border-bottom: 1px solid #e2e2e2;float: left;line-height: 40px;text-align: center;cursor: pointer;}
+.tabHead span.on{background: #f2f2f2}
+.tabVideoBox{}
+.tabVideoBox div{margin:20px 0 0px 30px;}
+.tabVideoBox div span{display: inline-block;width: 56px;}
+.tabVideoBox div input{border: 1px solid #e2e2e2;width: 486px;height: 34px;padding-left: 10px;color: #666666;}
+.addTreeBtn{background: #48cfae;display: block;width: 138px;height: 38px;text-align: center;line-height: 38px;margin:30px 0 0 30px;}
+.changeButton{margin: 34px 0 0 30px;}
+.changeButton input{width: 138px;height: 38px;color: #1e1a1a;line-height: 38px;text-align: center;border: 1px solid #eaeaea;background: #ffffff;margin-right: 22px;}
+.changeButton input.on{background: #f7f7f7}
+.tabClassBox{margin: 20px 0 0 30px;display: none;}
+.addTreeDialog .tabClassBox ul li{width: 550px;border: none;height: 30px;line-height: 30px;}
+.addTreeDialog .tabClassBox ul li label{cursor: pointer;}
+.addTreeDialog .tabClassBox ul{width: 560px;}
+.tabClassSearch{margin: 10px 0;}
+.tabClassSearch input{  border: 1px solid #e2e2e2; width: 486px; height: 34px;}
+.tabClassSearch input.searchBtn{width: 55px;height: 36px;background: #48cfae}
+.searchContent ul input{width: 16px;height: 16px;vertical-align: middle;margin-right: 10px;}
+.searchContent h4{font-weight: 400;}
+.dn{display: none;}
+
+/*tree*/
+.treeDrag .tree .treeLeaf div{position: absolute;width: 25px;height: 25px;background: url(../images/leafGray.png) no-repeat;cursor: pointer;}
+.treeDrag .tree  .treeLeaf  .leaf0{left: 238px;top: 80px;background-position: -29px 0;}
+.treeDrag .tree  .treeLeaf  .leaf1{left: 268px;top: 92px;background-position: 0px 0;}
+.treeDrag .tree  .treeLeaf  .leaf2{left: 297px;top: 80px;background-position: -289px -26px;}
+.treeDrag .tree  .treeLeaf  .leaf3{left: 360px;top: 90px;background-position: -55px -26px;}
+.treeDrag .tree  .treeLeaf  .leaf4{left: 217px;top: 176px;background-position: -341px 0px;}
+.treeDrag .tree  .treeLeaf  .leaf5{left: 265px;top: 184px;background-position: -107px 0px;}
+.treeDrag .tree  .treeLeaf  .leaf6{left: 359px;top: 183px;background-position: -81px -26px;}
+.treeDrag .tree  .treeLeaf  .leaf7{left: 382px;top: 188px;background-position: -107px -26px;}
+.treeDrag .tree  .treeLeaf  .leaf8{left: 248px;top: 215px;background-position: -159px -26px;}
+.treeDrag .tree  .treeLeaf  .leaf9{left: 412px;top: 208px;background-position: -263px -26px;}
+.treeDrag .tree  .treeLeaf  .leaf10{left: 290px;top: 273px;background-position: -211px -26px;}
+.treeDrag .tree  .treeLeaf  .leaf11{left: 401px;top: 240px;background-position: -185px -26px;}
+.treeDrag .tree  .treeLeaf  .leaf12{left: 415px;top: 240px;background-position: -185px 0px;}
+.treeDrag .tree  .treeLeaf  .leaf13{left: 465px;top: 200px;background-position: -133px 0px;}
+.treeDrag .tree  .treeLeaf  .leaf14{left: 486px;top: 199px;background-position: -29px 0px;}
+.treeDrag .tree  .treeLeaf  .leaf15{left: 456px;top: 249px;background-position: -211px 0px;}
+.treeDrag .tree  .treeLeaf  .leaf16{left: 435px;top: 304px;background-position: -237px 0px;}
+.treeDrag .tree  .treeLeaf  .leaf17{left: 182px;top: 318px;background-position: -237px -26px;}
+.treeDrag .tree  .treeLeaf  .leaf18{left: 138px;top: 368px;background-position: -289px -26px;}
+.treeDrag .tree  .treeLeaf  .leaf19{left: 195px;top: 344px;background-position: 0px -26px;}
+.treeDrag .tree  .treeLeaf  .leaf20{left: 246px;top: 320px;background-position: -263px 0px;}
+.treeDrag .tree  .treeLeaf  .leaf21{left: 246px;top: 320px;background-position: -263px 0px;}
+.treeDrag .tree  .treeLeaf  .leaf22{left: 220px;top: 361px;background-position: -289px 0px;}
+.treeDrag .tree  .treeLeaf  .leaf23{left: 277px;top: 412px;background-position: -315px 0px;}
+.treeDrag .tree  .treeLeaf  .leaf24{left: 359px;top: 365px;background-position: -341px 0px;}
+.treeDrag .tree  .treeLeaf  .leaf25{left: 404px;top: 355px;background-position: -263px -26px;}
+.treeDrag .tree  .treeLeaf  .leaf25{left: 384px;top: 429px;background-position: -263px -26px;}
+.treeDrag .tree  .treeLeaf  .leaf26{left: 466px;top: 395px;background-position: -159px 0px;}

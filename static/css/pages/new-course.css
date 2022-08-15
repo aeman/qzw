@@ -1,0 +1,174 @@
+@charset "utf-8";
+@import "../module/d-reset.css";
+@import "../module/mod_course_header.css";
+@import "../module/mod_course_common.css";
+@import "../module/mod_course_dialog.css";
+
+body{
+	background-color: #F5F9FA;
+	font-family: "Microsoft YaHei";
+}
+.course-con{
+	width: 1000px;
+	margin: 46px auto 30px auto;
+}
+.course-con .newcourse-tit{
+	color: #336699;
+	font-size: 28px;
+	font-weight: bold;
+	margin-bottom: 43px;
+}
+.course-con .course-name{
+	color: #333;
+	font-size: 22px;
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+.course-name-con{
+	margin-bottom: 40px
+}
+.course-name-con .course-input{
+	display: inline-block;
+	width: 796px;
+	height: 56px;
+	border: 2px solid #C9C9C9;
+	color: #999999;
+	font-size: 17px;
+	background-color: #fff;
+	margin-right: 37px;
+	line-height: 56px;
+}
+.course-name-con .course-input input{
+	width: 730px;
+	height: 35px;
+	font-size: 17px;
+	font-family: "Microsoft YaHei";
+	padding-left: 10px;
+	border: none;
+}
+.course-detail{
+	margin-bottom: 40px;
+}
+.course-detail .course-txtarea{
+	float: left;
+	display: inline-block;
+	width: 796px;
+	height: 196px;
+	border: 2px solid #C9C9C9;
+	background-color: #fff;
+}
+.course-detail .course-txtarea textarea{
+	float: left;
+	height: 156px;
+	width: 723px;
+	padding: 10px;
+	font-size: 17px;
+	font-family: "Microsoft YaHei";
+	text-indent: 10px;
+	border: none;
+}
+.course-detail .com-error{
+	float: left;
+	margin-top: 152px;
+	margin-left: 37px;
+}
+.course-detail .course-txtarea span{
+	color: #999999;
+	font-size: 17px;
+	float: left;
+	margin-top: 155px;
+}
+.course-know-notes{
+	width: 820px;
+}
+.course-know-notes li{
+	float: left;
+	margin-right:20px; 
+	margin-bottom: 20px;
+}
+.select-pic{
+	height: 197px;
+	width: 197px;
+	border:2px solid #C9C9C9;
+	float: left;
+}
+.img-con .pic-req{
+	float: left;
+	margin-left: 57px;
+}
+.img-con .pic-req li{
+	list-style: inherit;
+	font-size: 15px;
+	color: #666666;
+	margin-bottom: 23px;
+	list-style-type: disc;
+}
+.bot-btns{
+	margin-top: 50px;
+}
+.input-prompt{
+	font-size: 15px;
+	margin-top: 10px;
+}
+.img-con{
+	margin-bottom: 40px;
+}
+.bot-btns .com-btn.course-btn-green{
+	margin-right: 76px;
+}
+.show-blocks input{
+	margin-top: 5px;
+	height: 36px;
+	width: 200px;
+	border: none;
+}
+.key-blocks .com-block{
+	float: left;
+}
+.show-blocks{
+	display: inline-block;
+    width: 776px;
+    min-height: 36px;
+    border: 2px solid #C9C9C9;
+    color: #999999;
+    font-size: 17px;
+    background-color: #fff;
+    margin-right: 37px;
+    padding: 5px 10px;
+}
+.show-blocks .key-blocks .com-block{
+	margin: 5px 5px 5px 0;
+}
+.show-blocks .key-blocks .com-block i{
+	padding-left: 7px;
+}
+.upload-pic{
+	margin-bottom: 20px;
+}
+.upload-pic .file-select{
+  display: inline-block;
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  color: #000;
+  font-size: 17px;
+  border-radius: 3px;
+  height: 36px;
+  width:195px;
+  text-align: center;
+  line-height: 36px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+.upload-pic .file-select input{
+  height: 50px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.upload-pic .com-error{
+	margin-left: 30px;
+} 

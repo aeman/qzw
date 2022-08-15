@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+{% block header_js_css %}
+<title>新增文章</title>
+<link rel="stylesheet" href="/static/semantic.css"/>
+<link rel="stylesheet" href="/static/css/pages/new-course.css"/>
+<link href="/static/js/ke/themes/default/default.css" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/mgr.css"/>
+<script type="text/javascript" src="/static/js/article/avalon.min.js"></script>
+<script type="text/javascript" src="/static/js/article/article_add.js"></script>
+<style type="text/css">
+    .ke-icon-knowledge {
+    background-image: url(/static/images/add.png);
+    width: 101px;
+    height: 16px;
+    }
+    .logo img{
+    display: inline;
+    }
+    .add-article-inner {margin-bottom: 50px;}
+    input.ke-button {width: 50px;padding-left:10px;}
+    .bottomWrap {
+        position: static;
+    }
+</style>
+<script type="text/javascript">
+    vm.category = {% if article.class_id %} {{article.class_id}} {% else %} 0 {% endif %};
+    vm.action = "{{action}}" || "新增";
+    vm.article_id = {% if article.id %} {{article.id}} {% else %} 0 {% endif %};
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="container" ms-controller="articleedit">
+    <div class="w">
+        <div class="grid01 fix">
+            <!-- menu start -->
+            {% include 'mgr_left_menu.html' %}
+            <!-- menu end -->
+
+            <div class="colm">
+                <div class="add-article-title">{-action-}文章</div>
+                <div class="add-article-inner">
+                    <form method="post" action="./update" id="article_add">
+                        <input type="hidden" name="id" value="{{article.id}}"/>
+                        <input type="hidden" name="tags" id="tagInput"/>
+                        <input type="hidden" name="picFileName" id="picFileName" value="">
+                        <input type="hidden" name="class_id" ms-duplex="category"/>
+                        <dl>
+                            <dt>标题</dt>
+                            <dd><input type="text" class="i-input require" id="title" name="title"
+                                       value="{{article.article_title}}"/></dd>
+                        </dl>
+                        <dl>
+                            <dt>作者<span>（选填）</span></dt>
+                            <dd><input type="text" class="i-input" name="author" value="{{article.article_author}}"/>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>内容</dt>
+                            <dd><textarea style="width: 98%;display:none;" class="require" rows="5"
+                                          name="content" id="editor">{{article.article_content}}</textarea>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt style="margin-bottom: 10px;">标签</dt>
+                            <!--dd><a href="javascript:void(0)" ms-click="deleteTag(el)" class="i-tag" ms-repeat="tags">{-el.name-}</a></dd-->
+                            <div class="show-blocks" style="width: 98%;border-color:#ddd;">
+                                <div class="key-blocks">
+                                    <div ms-repeat="tags" class="com-block"><span>{-el.tag_name-}</span><i>x</i></div>
+                                </div>
+                                    <span class="course-input">
+                                        <input id="tags" type="text"/>
+                                    </span>
+                            </div>
+                        </dl>
+                        <dl>
+                            <dt>分类</dt>
+                            <!--category-->
+                            <dd>
+                                <div class="inline field">
+                                    <div class="ui selection dropdown">
+                                        <div class="default text">{-categoryText-}</div>
+                                        <i class="dropdown icon"></i>
+
+                                        <div class="menu">
+                                            <div class="item" ms-class-active="el.id==category"
+                                                 ms-class-selected="el.id==category" ms-repeat="categories"
+                                                 ms-value="el.id"
+                                                    >{-el.class_name-}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </dl>
+                    </form>
+                    <div style="margin: 5px 0 10px 0;">
+                        <!--input type="radio" name="picType" ms-change="rchange()" checked="checked" id="cover"/--><label
+                            style="font-size: 16px;" for="cover">设置封面</label>&nbsp;
+                        <!--input type="radio" name="picType" ms-change="rchange()" id="upload"/><label
+                            style="font-size: 16px;" for="upload">上传图片</label-->
+                    </div>
+                    <span>选择上传的图片</span>
+
+                    <div class="ui button" id="btnSelTreePic">
+                        文件...
+                    </div>
+                    <form action="/uploadClassPicture/" name="classPicForm" id="classPicForm" method="post"
+                          enctype="multipart/form-data">
+                        <input type="file" name="picTree" id="picTree" value=""
+                               style="opacity: 0; position: absolute; left: 0px;">
+                    </form>
+                    <div class="ui items" ms-visible="isCover">
+                        <div class="item">
+                            <a class="ui small image">
+                                {% if article.pic_file %}
+                                <img src="/static/images/{{article.pic_file}}" id="picClass"/>
+                                {% endif %}
+                                {% if not article.pic_file %}
+                                <img src="/static/images/default_tree.jpg" id="picClass"/>
+                                {% endif %}
+                            </a>
+
+                            <div class="content">
+                                <a class="header">提示</a>
+
+                                <div class="description">
+                                    <p>*请上传2MB以内大小的图片</p>
+
+                                    <p>支持png和jpg格式</p>
+
+                                    <p>大小不超过2MB</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui items" ms-visible="isUpload">
+                        <div class="item">
+                            <a class="ui small image">
+                                <img src="/static/images/default_tree.jpg" id="picClass2"/>
+                            </a>
+
+                            <div class="content">
+                                <a class="header">上传后图片路径</a>
+
+                                <div class="description">
+                                    <p id="pic_path"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="i-line"></p>
+
+                    <p class="mt30 fix"><!--a href="###" class="btn-white fl" ms-click="submit">预览</a--><a
+                            href="javascript:void(0)" ms-click="submit()"
+                            class="btn-green fl submit"><span ms-if="action=='编辑'">更新</span><span
+                            ms-if="action!='编辑'">发布</span></a>
+                    </p>
+                </div>
+            </div>
+            <!-- colm end -->
+        </div>
+        <!-- grid01 end -->
+    </div>
+</div><!-- container end -->
+{% endblock %}
+

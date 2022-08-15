@@ -1,0 +1,27 @@
+@charset "utf-8";
+@import "../module/d-reset.css";
+@import "../module/mod_course_header.css";
+@import "../module/mod_course_common.css";
+@import "../module/mod_course_mine.css";
+body{
+	background-color: #F5F9FA;
+}
+.course-con{
+	width: 1000px;
+	margin: 35px auto 30px auto;
+}
+.mycourse-blocks li{
+	float: left;
+	margin-right: 40px;
+	margin-top: 40px;
+}
+.mycourse-blocks .no-margin{
+	margin-right:0;
+}
+.stu-btn{
+	padding: 40px 0 7px 0;
+	text-align: center;
+}
+.com-pages{
+	padding: 40px 0 30px 300px;
+}

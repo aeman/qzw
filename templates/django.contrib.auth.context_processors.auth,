@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/base.css">
+    <script src="/static/js/jquery-1.11.2.min.js"></script>
+    <script src="/static/js/common.js"></script>
+    <script src="/static/js/dialog.js"></script>
+    {% block header_js_css %}{% endblock %}
+</head>
+<body>
+<div class="headerWrap">
+    <div class="header f-cb">
+        <div class="headerLeft f-fl">
+            <a href="/"> <img src="/static/images/logo.png" alt=""></a>
+        </div>
+        <div class="headerRight f-fr">
+            <ul class='headerList'>
+{#                <li class="on"><a href="/">首頁</a></li>#}
+{#                <li><a href="/">全部知识树</a></li>#}
+{#                <li><a href="">我的知识树</a></li>#}
+{#                <li><input type="text" class='hdSearch'>#}
+{##}
+{#                    <div class='searchIcon'></div>#}
+{#                </li>#}
+                {% if not "user_id" in request.session %}
+                <li class='hdLogin hdLoginOn'><a href="">登录</a></li>
+                <li class='hdLogin hdLoginRe'><a href="">注册</a></li>
+                {% else %}
+{#                <li class='newsNumber'><a>0</a></li>#}
+                <li class='nameTitle'>
+                    <div>
+                        <img src="/static/{{ request.session.avatar }}" alt="">
+                    </div>
+                    <ul>
+{#                        <li>视频管理</li>#}
+                        <li id="btnNewTree">新建知识树</li>
+                        <li id="btnOptions">个人设置</li>
+                        <li id="btnLogout">退出</li>
+                    </ul>
+                </li>
+                {% endif %}
+            </ul>
+            <div></div>
+        </div>
+    </div>
+</div>
+{% block content %}{% endblock %}
+<div class="bottomWrap" id="bottomPos">
+    <div class="bottom">
+        <ul>
+            <li>北京千字文教育科技有限公司&nbsp;版权所有</li>
+            <li>Copyright © 2014-2015, icmooc.cn, All Rights Reserved 京ICP备 14030440号</li>
+        </ul>
+        <div class='contact'>
+            <span>联系我们:</span>
+            <img src="/static/images/sinag.png" alt="">
+            <img src="/static/images/winxing.png" alt="">
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

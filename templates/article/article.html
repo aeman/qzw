@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block header_js_css %}
+<title>{{article.article_title}}</title>
+<link rel="stylesheet" href="/static/semantic.css"/>
+<link rel="stylesheet" href="/static/css/pages/new-course.css"/>
+<link href="/static/js/ke/themes/default/default.css" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/mgr.css"/>
+<script type="text/javascript" src="/static/js/article/avalon.min.js"
+        data-main="/static/js/article/article.js"></script>
+<script type="text/javascript">
+    require(["article"], function(article){
+        article.start({{article.id}});
+    });
+</script>
+<style type="text/css">
+    .add-article-inner {margin-bottom: 50px;}
+    .logo img{ display: inline; }
+    p { margin: 0em 0em 1em; line-height: 2em; }
+    .bottomWrap {
+    position: static;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container" ms-controller="article">
+    <div class="w">
+        <div class="grid02 fix">
+            <div class="colm">
+                <div class="article">
+                    <div class="article-title">
+                        <h1>{{article.article_title}}</h1>
+
+                        <p>{{article.article_author}} {{article.publish_date | slice:"10"}} 分类： {{category}}</p>
+                    </div>
+                    <div class="article-conts" style="overflow:hidden">
+                        {% autoescape off %}
+                        {{article.article_content}}
+                        {% endautoescape %}
+                    </div>
+                    <div class="article-taglist">
+                        文章标签：<a ms-href="/article/tag/{-el.tag_name-}" ms-repeat="tags" class="i-tag">{- el.tag_name-}</a>
+                    </div>
+                    <div>
+                        <div class="bdsharebuttonbox fr"><a href="#" class="bds_more" data-cmd="more"></a><a
+                                title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博"
+                                                                                                   href="#"
+                                                                                                   class="bds_tsina"
+                                                                                                   data-cmd="tsina"></a><a
+                                title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到微信" href="#"
+                                                                                               class="bds_weixin"
+                                                                                               data-cmd="weixin"></a><a
+                                title="分享到QQ好友" href="#" class="bds_sqq" data-cmd="sqq"></a></div>
+                    </div>
+                    {% if not islogin %}
+                    <div class="login-txt">
+                        <p>可解锁成就<span><a href="###">登录</a>后可查看我的成就点</span></p>
+                    </div>
+                    {% endif %}
+                    <!--div class="state-list">
+                        <ul>
+                            <li><a href="###" class="unlock">咨询大师</a></li>
+                            <li><a href="###" class="islock">话语权</a></li>
+                        </ul>
+                    </div-->
+                </div>
+            </div>
+            <!-- colm end -->
+            <div class="cole">
+                <div class="mod-epl">
+                    <div class="hd">最受欢迎的话题</div>
+                    <div class="bd">
+                        <div class="topic-list">
+                            <ul>
+                                <li ms-repeat="serv_articles"><span>{-el.read_times|fmt_show-}阅读</span><a
+                                        ms-attr-title="{-el.article_title-}" ms-href="/article/{-el.id-}">{-el.article_title|truncate(12)-}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mod-epl mt15">
+                    <div class="hd">最受欢迎的知识点</div>
+                    <div class="bd">
+                        <div class="tags-list">
+                            <ul>
+                                <li ms-repeat="serv_knowledges"><a ms-attr-title="{-el.course_name-}"
+                                                                   href="javascript: void(0);">{-el.course_name|truncate(12)-}</a>x{-el.play_times-}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- cole end -->
+        </div>
+        <!-- grid02 end -->
+    </div>
+</div><!-- container end -->
+<div class="step" ms-controller="article_knowledge">
+    <ul>
+        <li ms-repeat="knowledges" ms-class-on="el==0" ms-click="go2Knowledge(el, this)"></li>
+    </ul>
+    <i></i>
+</div>
+<script>
+        window._bd_share_config = {
+            "common": {
+                "bdText": $(".article-title>h1").html(),
+                "bdDesc": $(".article-title>h1").html(),
+                "bdUrl": location.href
+                <!--"bdPic": document.getElementById("classPic").src-->
+            },
+            "share": {}
+        };
+        with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
+{% endblock %}

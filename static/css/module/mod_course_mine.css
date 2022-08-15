@@ -1,0 +1,109 @@
+@charset "utf-8";
+.mycourse-tit{
+	font-family: 'Microsoft YaHei';
+	text-align: center;
+}
+.mycourse-tit p{
+	text-align: center;
+	color: #66CCFF;
+	font-size: 38px;
+}
+.mycourse-tit .txt1{
+	margin-bottom: 63px;
+}
+.mycourse-tit .txt2{
+	margin-top: 30px;
+	font-size: 25px;
+}
+.mycourse-tit .mycourse-pic{
+	display: inline-block;
+	width: 150px;
+	height: 150px;
+	border-radius: 150px;
+	background: url("../../images/temp/mycourse-pic.png") no-repeat;
+	background-size: 100%;
+}
+.mycourse-block{
+	font-family: 'Microsoft YaHei';
+	width: 260px;
+	height: 362px;
+	background-color: #fff;
+	padding: 22px 20px 16px 20px;
+	text-align: center;
+	color: #66CCFF;
+}
+.mycourse-block .block-pic{
+	display: inline-block;
+	width: 150px;
+	height: 150px;
+	border-radius: 150px;
+	background: url("../../images/temp/mycourse-block-pic.png") no-repeat;
+	background-size: 100%;
+}
+.mycourse-block .block-tit{
+	font-size: 23px;
+	margin-top: 14px;
+	text-align: left;
+	line-height: 37px;
+}
+.mycourse-block .block-con{
+	font-size: 14px;
+	margin-top: 13px;
+	line-height: 24px;
+	text-align: left;
+	color: #333;
+}
+.mycourse-block .com-btn{
+	margin-top: 8px;
+}
+.mycourse-block .com-scrol-con{
+	margin-top: 10px;
+}
+.mycourse-emotion{
+	display: inline-block;
+	font-family: "Microsoft YaHei";
+	color: #fff;
+	width: 101.5px;
+	height: 50px;
+	line-height: 50px;
+	padding-left: 50px;
+	font-size: 18px;
+	background: url("../../images/common/emo1.png") no-repeat;
+	background-size: 100%;
+}
+.mycourse-emotion.unstable{
+	background: url("../../images/common/emo2.png") no-repeat;
+	background-size: 100%;
+	width: 106px;
+	height: 59px;
+	line-height: 59px;	
+	padding-left: 60px;
+}
+.mycourse-emotion.unstable2{
+	background: url("../../images/common/emo3.png") no-repeat;
+	background-size: 100%;
+	width: 107px;
+	height: 53px;
+	height: 61px\0;
+	line-height: 53px;
+	padding-left: 60px;
+}
+.mycourse-blocks  .mycourse-block.mycourse-hover{
+	background-color:#326699;
+}
+.mycourse-block.mycourse-hover .block-tit,.mycourse-block.mycourse-hover .block-con,.mycourse-block.mycourse-hover .scrol-num{
+	color:#fff;
+}
+.mycourse-block.mycourse-hover .com-btn{
+	background-color: #fff;
+	color: #326699;
+}
+.mycourse-blocks  .mycourse-block.mycourse-click{
+	background-color:#326699;
+}
+.mycourse-blocks  .mycourse-block.mycourse-click .com-scrol-con{
+	display: none;
+}
+.mycourse-block.mycourse-click .block-tit,.mycourse-block.mycourse-click .block-con{
+	color:#fff;
+}

@@ -1,0 +1,126 @@
+@charset "utf-8";
+.course-header{
+	background-color: #336699;
+	border-bottom: 4px solid #000033;
+}
+.course-header .header-con{
+	width: 1000px;
+	height: 70px;
+	margin:0 auto;
+}
+.course-header .header-con li{
+	box-sizing: content-box;
+	float: left;
+	height: 70px;
+	line-height: 70px;
+}
+.course-header .logo{
+	margin-right: 87px;
+}
+.course-header .logo img{
+	width: 173px;
+	height: 50px;
+	margin-top: 5px;
+}
+.course-header .txt{
+	font-family: "Microsoft Yahei", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+	color: #fff;
+	font-size: 18px; /*原来为26*/
+	padding: 0 16px;
+	margin-right: 30px; /*原来为50*/
+}
+.course-header .txt:hover{
+	border-bottom: 4px solid #66CCFF;
+}
+.course-header .txt.select{
+	border-bottom: 4px solid #66CCFF;
+}
+.course-header .search-input{
+	position: relative;
+	display: inline-block;
+	width: 195px;
+	height: 22px;
+	border-radius: 15px;
+	background-color: #EEE;
+	padding: 4px 10px;
+	box-sizing: content-box;
+	top: 21px;
+}
+.course-header .search-input input{
+	position: relative;
+	top: -25px;
+	left: 5px;
+	width: 160px;
+	height: 20px;
+	border: none;
+	background-color: #EEE;
+	box-sizing: content-box;
+	padding-left: 0px;
+	font-size: 11px;
+	line-height: 20px;
+}
+.course-header .search-input i{
+	display: inline-block;
+	float: right;
+	width: 20px;
+	height: 21px;
+	background: url("../../images/common/search.png") no-repeat;
+	background-size: 100%;
+}
+.course-header .search-input .search-input-layer{
+	background-color: #fff;
+	position: absolute;
+	top: 29px;
+	left: 10px;
+	width: 177px;
+	padding: 10px 8px 1px 8px;
+	border: 1px solid #BFBFBF;
+	line-height: normal;
+	font-size: 12px;
+}
+.course-header .search-input .search-input-layer li{
+	margin-bottom: 5px;
+	line-height: inherit;
+	height: 18px;
+	color: #999999;
+	float: none;
+}
+.course-header .search-input .search-input-layer li a{
+	color: #999999;
+}
+.red-txt{
+	color: #FF0000;
+}
+.course-header .search-input .search-input-layer li>span{
+	float: right;
+}
+
+.course-header .user-pic{
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+	margin-top: 12px;
+	background: url("../../images/temp/user-pic.png") no-repeat;
+	background-size: 100%;
+}
+
+
+.course-header .login a{
+	color: #fff;
+	font-size: 14px;
+	font-family: "Microsoft Yahei", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+}
+.course-header .login span{
+	color: #fff;
+}
+.course-header .search{
+	padding-right:70px;
+	padding: 21px 35px 0 0\0;
+}
+.course-header  .no-login .search{
+	padding-right:30px;
+}
+.course-header .no-login .txt{
+	margin-right: 30px;
+}

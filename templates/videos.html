@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% block header_js_css %}
+    <link href="/static/semantic.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/allTree.css">
+    <link rel="stylesheet" href="/static/css/pages/search-result.css"/>
+    <link rel="stylesheet" href="/static/css/mgr.css">
+    <script src='/static/js/public.js'></script>
+    <script src="/static/semantic.js"></script>
+    <style>
+        .bottomWrap {
+            position: relative;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="grid01 fix">
+    <div class="main">
+        <!-- menu start -->
+            {% include 'mgr_left_menu.html' %}
+        <!-- menu end -->
+    <div>
+        <div class="colm" style="padding-left: 10px;">
+        <div class="allTreeTitle">
+            视频列表
+        </div>
+        <div class="ui form">
+            <div class="inline field">
+                <div class="ui button" id="btnUploadVideo">上传新视频</div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label>视频名称</label>
+                <input type="text" name="content" id="content" placeholder="视频名称" value="{{ content }}">
+
+                <div class="ui button" id="btnSearchVideos">搜索</div>
+            </div>
+        </div>
+        <table class="ui table">
+            <thead>
+            <tr>
+                <th>视频名称</th>
+                <th>创建时间</th>
+                <th>播放次数</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for video in items %}
+                <tr>
+                    <td>{{ video.video_name }}</td>
+                    <td>{{ video.upload_time | date:"Y-m-d H:i:s" }}</td>
+                    <td>{{ video.play_times }}</td>
+                    <td>{{ video.video_status }}</td>
+                    <td>
+                        <div class="ui inline button edit" data-id="{{ video.id }}">编辑</div>
+                        <div class="ui inline button delete" data-id="{{ video.id }}">删除</div>
+                    </td>
+                </tr>
+            {% endfor %}
+            {#            <tr>#}
+            {#                <td>心理学概述</td>#}
+            {#                <td>2013-09-14 23:59:59</td>#}
+            {#                <td>200</td>#}
+            {#                <td>可播放</td>#}
+            {#                <td>#}
+            {#                    <div class="ui inline button">编辑</div>#}
+            {#                    <div class="ui inline button">删除</div>#}
+            {#                </td>#}
+            {#            </tr>#}
+            {#            <tr>#}
+            {#                <td>心理学概述</td>#}
+            {#                <td>2013-09-14 23:59:59</td>#}
+            {#                <td>200</td>#}
+            {#                <td>可播放</td>#}
+            {#                <td>#}
+            {#                    <div class="ui inline button">编辑</div>#}
+            {#                    <div class="ui inline button">删除</div>#}
+            {#                </td>#}
+            {#            </tr>#}
+            </tbody>
+        </table>
+        {% load duration_format %}
+        {% autoescape off %}
+
+            {% if searching %}
+                {% with searchRepParam='searchText,'|add:content %}
+                    {{ page | page_filter:'/videos/search/searchText/page_index' | replace:searchRepParam}}
+                {% endwith %}
+            {% else %}
+                {{ page | page_filter:'/videos/page_index' }}
+            {% endif %}
+
+        {% endautoescape %}
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <script>
+        $(function () {
+            $("#btnUploadVideo").click(function () {
+                window.location.href = "/videos/upload/";
+            });
+
+            $(".delete").click(function () {
+                //alert(this.dataset.id);
+                $.post("/videos/delete/" + this.dataset.id, function (data) {
+                    window.location.href = "/videos/";
+                });
+            });
+
+            $(".edit").click(function () {
+                window.location.href = "/videos/edit/" + this.dataset.id;
+            });
+
+            $("#btnSearchVideos").click(function () {
+                window.location.href = "/videos/search/" + $("#content").val();
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,139 @@
+@charset "UTF-8";
+body {
+    background-color: #e9e9e9;
+}
+
+.allTreeTitle {
+    font-size: 24px;
+    color: #000000;
+    height: 66px;
+    line-height: 66px;
+}
+
+.allTreeList {
+    margin-right: -20px;
+}
+
+.allTreeList li {
+    float: left;
+    width: 134px;
+    height: 64px;
+    font-size: 18px;
+    color: #333;
+    line-height: 64px;
+    text-align: center;
+    border: 1px solid #e7e7e7;
+    margin-right: 11px;
+}
+
+.allTreeList .on {
+    background: #5ccff6;
+    color: #fff;
+    border: none;
+}
+
+.allTreeBox {
+    margin: 0px 0px 0 0;
+    position: relative;
+}
+
+.imgBottom {
+    width: 236px;
+    border: 1px solid #e7e7e7;
+    padding: 10px;
+    border-radius: 0 0 5px 5px;
+}
+
+.imgBottom h4 {
+    border-bottom: 1px solid #e7e7e7;
+    padding-bottom: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.imgBottom h4:hover {
+    color: #2a6496;
+}
+
+.imgBottom p {
+    line-height: 22px;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.imgBottom .allAttention {
+    height: 16px;
+    width: 18px;
+    vertical-align: middle;
+    cursor: pointer;
+    background: url(../images/13.png) no-repeat;
+    display: inline-block;
+}
+
+.imgBottom .allCollection {
+    width: 15px;
+    height: 16px;
+    vertical-align: middle;
+    cursor: pointer;
+    background: url(../images/11.png) no-repeat;
+    display: inline-block;
+}
+
+.imgBottom .imgBottomBox .allCollectionOver {
+    background: url(../images/12.png) no-repeat;
+}
+
+.imgBottom .imgBottomBox .allAttentionOver {
+    background: url(../images/14.png) no-repeat 0px -1px;
+}
+
+.imgBottom span {
+    margin-right: 10px;
+}
+
+.imgBottomBox {
+    margin-top: 10px;
+}
+
+.imgContainer {
+    border-top: 1px solid #e7e7e7;
+    margin-top: 10px;
+    padding: 10px 0;
+}
+
+.imgBottom .imgContainer img {
+    width: 30px;
+    height: 30px;
+    float: left;
+}
+
+.imgContainer ul {
+    float: left;
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+.imgContainer ul li {
+    margin-bottom: 5px;
+}
+
+.pin {
+    float: left;
+    padding: 0 14px 30px 0;
+}
+
+.box {
+    width: 236px;
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+    background-color: #fff;
+}
+
+.box .boxImg {
+    width: 236px;
+    /*border-radius: 5px 5px 0 0;*/
+}
+
+.collectionSpan {
+    text-align: right;
+}

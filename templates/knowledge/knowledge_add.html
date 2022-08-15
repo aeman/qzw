@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% block header_js_css %}
+<title>新增/编辑知识点</title>
+<link rel="stylesheet" href="/static/semantic.css"/>
+<link rel="stylesheet" href="/static/css/pages/new-course.css"/>
+<link href="/static/js/ke/themes/default/default.css" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/mgr.css"/>
+<script type="text/javascript" src="/static/js/article/avalon.min.js"></script>
+<script type="text/javascript" src="/static/js/knowledge/knowledge_add.js"></script>
+<style type="text/css">
+    .ke-icon-knowledge {
+    background-image: url(/static/images/add.png);
+    width: 101px;
+    height: 16px;
+    }
+    .logo img{
+    display: inline;
+    }
+    .add-article-inner {margin-bottom: 50px;}
+    .bottomWrap {
+    position: static;
+    }
+</style>
+<script type="text/javascript">
+    vm.knowledge_id = {%if knowledge.id %} {{knowledge.id}} {% endif %} {%if not knowledge.id %} 0 {% endif %};
+
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="container" ms-controller="knowledgeedit" style="margin-bottom:100px;">
+    <div class="w">
+        <div class="grid01 fix">
+            <!-- menu start -->
+            {% include 'mgr_left_menu.html' %}
+            <!-- menu end -->
+
+            <div class="colm">
+                <form id="knowledgeform" method="post" action="/knowledge/update">
+                    <div class="mod-hd">{-action-}知识点<i class="cape"></i></div>
+                    <div class="mod-bd-section">
+                        <div class="knows-title"><input type="text" name="title" id="title" placeholder="知识点名称"
+                                                        maxlength="20" ms-on-keyup="keypress1()"
+                                                        value="{{knowledge.course_name}}"/><span
+                                style="position: relative; top: -30px; left: 450; margin-left: 480px; color: #ccc;">{-nametips-}</span>
+                        </div>
+                        <div class="knows-title" style="margin-top: 8px;background:#fff"><input type="text" name="desc"
+                                                                                                id="desc"
+                                                                                                placeholder="知识点描述"
+                                                                                                maxlength="30"
+                                                                                                ms-on-keyup="keypress2()"
+                                                                                                value="{{knowledge.course_desc}}"/><span
+                                style="position: relative; top: -30px; left: 450; margin-left: 480px; color: #ccc;">{-desctips-}</span>
+                        </div>
+                        <input type="hidden" name="id" value="{{knowledge.id}}"/>
+                        <input type="hidden" name="videos" id="videos"/>
+
+                        <div class="knows-list mt5" ms-visible="showit">
+                            <ul>
+                                <li ms-repeat="videos"><span class="fr"><a href="javascript:;" class="i-up"
+                                                                           ms-click="up(el)"></a><a
+                                        href="javascript:void(0);" class="i-down" ms-click="down(el)"></a><a
+                                        href="javascript:void(0);"
+                                        ms-click="deleteVideo(el)"
+                                        class="i-del"></a></span><a
+                                        href="javascript:void(0);" class="title-link">{- el.name -}</a>（{- el.video_time | timefilter -}）
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div id="modTabs" class="mod-tabs mt20">
+                            <div class="hd fix">
+                                <ul>
+                                    <li class="on">视频添加</li>
+                                    <!--li>课程知识点</li-->
+                                </ul>
+                            </div>
+                            <div class="bd">
+                                <div class="inner">
+                                    <div class="video-search">
+                                        <input type="text" class="i-keyword" placeholder="输入视频名称查找" id="searchText"
+                                               ms-on-keyup="key_down($event)"/>
+                                        <input type="button" class="i-search" ms-click="search()"/>
+                                    </div>
+                                    <div id="videoTabs" class="video-uploads">
+                                        <!--ol class="video-tabs fix">
+                                            <li>我的视频</li>
+                                            <li>全部视频</li>
+                                        </ol-->
+                                        <div class="video-conts">
+                                            <ul>
+                                                <li ms-repeat="search_results"><input type="checkbox"
+                                                                                      class="check_result"
+                                                                                      ms-value="el.id"/>{- el.name -}
+                                                </li>
+                                            </ul>
+                                            <div class="page-range"><a ms-repeat="links" ms-class-active="el.active"
+                                                                       href="javascript:void(0);"
+                                                                       ms-click="gopg(el.pg)">{-el.lable-}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="javascript:void(0);" class="btn-green mt10" ms-click="add()"
+                                       ms-visible="search_results.length > 0">添加到知识点列表</a>
+                                </div>
+                                <!--div class="inner">
+                                    <div class="add-filed">
+                                        <dl class="fix">
+                                            <dt>视频链接</dt>
+                                            <dd><input type="text" value="http://"/></dd>
+                                        </dl>
+                                        <dl class="fix">
+                                            <dt>标题</dt>
+                                            <dd><input type="text" value="健康心理学知识"/></dd>
+                                        </dl>
+                                    </div>
+                                    <a href="###" class="btn-green mt10">添加到知识点列表</a>
+                                </div-->
+                            </div>
+                        </div>
+                        <p class="mt30 fix"><a href="javascript:void(0)" ms-click="submit()" class="btn-green fl">确定</a>
+                    </div>
+                </form>
+            </div>
+            <!-- colm end -->
+        </div>
+        <!-- grid01 end -->
+    </div>
+</div>
+<!-- container end -->
+{% endblock %}

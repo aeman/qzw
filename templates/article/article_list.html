@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block header_js_css %}
+<title>文章列表</title>
+<link rel="stylesheet" href="/static/semantic.css"/>
+<link rel="stylesheet" href="/static/css/pages/course-tab.css"/>
+<link rel="stylesheet" href="/static/css/mgr.css"/>
+<script type="text/javascript" src="/static/js/article/avalon.min.js"></script>
+<script type="text/javascript" src="/static/js/article/article_list.js"></script>
+<script type="text/javascript">
+    vm.searchText = "{{searchText}}";
+</script>
+<style type="text/css">
+    .colm {margin-bottom: 50px;}
+    .bottomWrap {
+    position: static;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container" ms-controller="articlelist">
+    <div class="w">
+        <div class="grid01 fix">
+            <!-- menu start -->
+            {% include 'mgr_left_menu.html' %}
+            <!-- menu end -->
+
+            <div class="colm">
+                <div class="mod-hd">文章列表<i class="cape"></i></div>
+                <div class="mod-bd">
+                    <div class="search-box fix">
+                        <span class="fl">文章名称：</span>
+                        <input type="text" ms-duplex="searchText" class="i-text fl"/>
+                        <input type="button" class="i-btn fl" ms-click="search()" value="搜索"/>
+                    </div>
+
+                    <div class="table-list">
+                        <table width="100%">
+                            <tbody>
+                            <tr>
+                                <th>文章标题</th>
+                                <th>所属分类</th>
+                                <th>阅读次数</th>
+                                <!--th>发布者</th-->
+                                <th>发布时间</th>
+                                <th class="i-end">操作</th>
+                            </tr>
+                            <tr class="i-empty">
+                                <td>&nbsp</td>
+                                <td>&nbsp</td>
+                                <!--td>&nbsp</td-->
+                                <td>&nbsp</td>
+                                <td>&nbsp</td>
+                            </tr>
+                            {% for item in items %}
+                            <tr>
+                                <td><div class="wrap-title"><a href="/article/{{item.id}}" class="title-link">{{item.article_title}}</a></div></td>
+                                <td style="text-align:center"><div class="wrap-classification"><span id="td{{item.class_id}}"></span></div></td>
+                                <td><div class="wrap-count">{{item.read_times}}</div></td>
+                                <!--td><div class="wrap-publisher">{{item.article_author}}</div></td-->
+                                <td style="text-align:center"><div class="wrap-time">{{item.publish_date | slice:"10"}}</div></td>
+                                <td><div class="wrap-action"><a href="/article/edit/{{item.id}}">编辑</a>|<a href="javascript:void(0);"
+                                                                                  ms-click="deleteItem({{item.id}})"
+                                                                                  class="i-del">删除</a></div></td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% load duration_format %}
+                    {% autoescape off %}
+                    {% with searchRepParam='searchText,'|add:searchText %}
+                    {{page | page_filter:'/article/list/page_index/searchText' | replace:searchRepParam }}
+                    {% endwith %}
+                    {% endautoescape %}
+                </div>
+            </div>
+            <!-- colm end -->
+        </div>
+        <!-- grid01 end -->
+    </div>
+</div>
+<div class="del-layer" style="display:none;width: 220px">
+    <p style="width: 180px;">
+        <span class="layer-pic"></span>
+        <span class="layer-txt">确认删除这篇文章么?</span>
+    </p>
+
+    <div class="layer-btns" style="width: 180px;">
+        <a href="javascript: void(0)" class="cancel">取消</a>
+        <a href="javascript: void(0)" class="layer-red-btn">删除</a>
+    </div>
+</div>
+{% endblock %}

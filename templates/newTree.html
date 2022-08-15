@@ -1,0 +1,776 @@
+{% extends 'base.html' %}
+
+{% block header_js_css %}
+    <link href="/static/semantic.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/allTree.css">
+    <style>
+        .page-range * {
+            padding: 0px 5px 0px 5px;
+        }
+
+        .page-range a.active {
+            background: #bbbbbb;
+            color: #ffffff;
+        }
+    </style>
+    <script src="/static/semantic.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.form.js"></script>
+    <script>
+        $(function () {
+            var timeFn = null;
+
+            $('.ui.accordion').accordion();
+            $('.tabular.menu .item').tab();
+            $('.ui.dropdown').dropdown();
+            $('.ui.checkbox').checkbox();
+
+            $('#btnCancel').click(function () {
+                window.location.href = '/';
+            });
+
+            $('#bottomPos').css('position', 'relative');
+            $('#btnSelTreePic').click(function () {
+                $('input[type=file]').trigger('click');
+            });
+
+            $('.ui.button.red').click(function () {
+                $('#dlgConfirmDel').modal('show');
+            })
+
+            $('.btnAddOuterVideo').click(function () {
+                var title = $('#outVideoTitle').val();
+                var url = $('#outVideoUrl').val()
+                if (title == '' || url == '') {
+                    $('#outVideoTitle').parent().addClass('error');
+                    return;
+                }
+                var $content = $('.ui.grid').has(this).find('.txtOuterVideoTitle').val();
+                $content += '<td>' + $content + '</td><td>00:00</td>';
+                $content += '<td><i class="large arrow circle outline up icon"></i><i class="large arrow circle outline down icon"></i><i class="large remove circle outline icon"></i></td>';
+                //$content = '<tr>' + $content + '</tr>';
+                $content = '<tr data-name="' + $('.ui.grid').has(this).find('.txtOuterVideoTitle').val() + '" data-url="' + $('.ui.grid').has(this).find('.txtOuterVideoUrl').val() + '">' + $content + '</tr>';
+                $('.course').has(this).find('.ui.table tbody').append($content);
+
+                $('.course').has(this).find('.up.icon').click(function () {
+                    var $tr = $(this).parent().parent();
+                    if ($tr.index() != 0) {
+                        $tr.prev().before($tr);
+                    }
+                });
+                $('.course').has(this).find('.down.icon').click(function () {
+                    var $tr = $(this).parent().parent();
+                    if ($tr.index() != $('.ui.table tr').length) {
+                        $tr.next().after($tr);
+                    }
+                });
+                $('.course').has(this).find('.remove.icon').click(function () {
+                    $('tr').has(this).remove();
+                });
+            });
+
+            function getDataByPage(obj) {
+                var $ele = $('.course').has(obj);
+                {#                alert($(obj).html());#}
+                {#                alert("/videos/search2/" + $ele.find('.txtSearch').val() + '/' + $(obj).html());#}
+                $.getJSON("/videos/search2/" + $ele.find('.txtSearch').val() + '/' + obj.dataset.no, function (data, status) {
+                    if (status == 'success') {
+                        {#                        alert(data);#}
+                        {#                        alert($(obj).html());#}
+                        {#                        alert(JSON.parse(data[0]).canNext);#}
+                        {#                        alert(JSON.parse(data[0]).canPrev);#}
+                        {#                        alert(JSON.parse(data[0]).pageList);#}
+                        var pageRange = "";
+                        var pagePrev = '<a href="javascript:void(0);" class="prev" data-no="' + (obj.dataset.no - 1) + '">上一页</a>';
+                        var pageNext = '<a href="javascript:void(0);" class="next" data-no="' + (parseInt(obj.dataset.no) + 1) + '">下一页</a>';
+                        if (JSON.parse(data[0]).canNext == 'False') {
+                            pageNext = '<span>下一页</span>';
+                        }
+                        if (JSON.parse(data[0]).canPrev == 'False') {
+                            pagePrev = '<span>上一页</span>';
+                        }
+                        $.each(JSON.parse(JSON.parse(data[0]).pageList), function (i, item) {
+                            {#                            alert(JSON.parse(JSON.parse(data[0]).pageList)[i]);#}
+                            var pageNo = JSON.parse(JSON.parse(data[0]).pageList)[i];
+                            if (obj.dataset.no == pageNo) {
+                                pageRange += '<a href="javascript:void(0);" class="active" data-no="' + pageNo + '">' + pageNo + '</a>';
+                            } else {
+                                pageRange += '<a href="javascript:void(0);" data-no="' + pageNo + '">' + pageNo + '</a>';
+                            }
+                        })
+                        $ele.find(".lblSearch").remove();
+                        $ele.find(".ui.checkbox.s_videos").remove();
+                        $ele.find(".s_content").parent().find("br").remove();
+                        $ele.find(".s_content").after("<br><br><label class=\"lblSearch\">搜索到以下内容：</label>");
+                        data.shift();
+                        {#                        alert(data.length)#}
+                        {#                        alert(data);#}
+                        var s_v = ""
+                        $.each(data, function (i, item) {
+                            s_v += "<p><div class=\"ui checkbox\"><input data-name=\"" + data[i].fields.video_name +
+                            "\" data-url=" + data[i].fields.video_url + " data-uid=" + data[i].pk + " data-time=" + data[i].fields.video_time + " type=\"checkbox\" id=fun" + $ele.index() + i +
+                            " name=\"fun" + i + "\"><label for=\"fun" + $ele.index() + i + "\">"
+                            + data[i].fields.video_name + "</label></div></p>";
+                        });
+                        s_v += "<br>"
+                        s_v += '<div class="page-range">' + pagePrev + pageRange + pageNext + "</div><br><br>"
+                        $ele.find(".lblSearch").append(s_v);
+                        $('.page-range a').click(function () {
+                            getDataByPage(this);
+                        });
+                    }
+                });
+            }
+
+            $('.btnSearch').click(function () {
+                var $ele = $('.course').has(this);
+                $.getJSON("/videos/search2/" + $ele.find('.txtSearch').val() + '/1', function (data, status) {
+                    if (status == 'success') {
+                        {#                        alert(data);#}
+                        {#                        alert(JSON.parse(data[0]).canNext);#}
+                        {#                        alert(JSON.parse(data[0]).pageList);#}
+                        var pageRange = "";
+                        var pageRange = "";
+                        var pagePrev = '<a href="javascript:void(0);" class="prev" data-no="1">上一页</a>';
+                        var pageNext = '<a href="javascript:void(0);" class="next" data-no="2">下一页</a>';
+                        if (JSON.parse(data[0]).canNext == 'False') {
+                            pageNext = '<span>下一页</span>';
+                        }
+                        if (JSON.parse(data[0]).canPrev == 'False') {
+                            pagePrev = '<span>上一页</span>';
+                        }
+                        $.each(JSON.parse(JSON.parse(data[0]).pageList), function (i, item) {
+                            {#                            alert(JSON.parse(JSON.parse(data[0]).pageList)[i]);#}
+                            var pageNo = JSON.parse(JSON.parse(data[0]).pageList)[i];
+                            {#                            pageRange += '<a href="javascript:void(0);" data-no="' + pageNo + '">' + pageNo + '</a>';#}
+                            if (1 == pageNo) {
+                                pageRange += '<a href="javascript:void(0);" class="active" data-no="' + pageNo + '">' + pageNo + '</a>';
+                            } else {
+                                pageRange += '<a href="javascript:void(0);" data-no="' + pageNo + '">' + pageNo + '</a>';
+                            }
+                        })
+                        $ele.find(".lblSearch").remove();
+                        $ele.find(".ui.checkbox.s_videos").remove();
+                        $ele.find(".s_content").parent().find("br").remove();
+                        $ele.find(".s_content").after("<br><br><label class=\"lblSearch\">搜索到以下内容：</label>");
+                        data.shift();
+                        var s_v = ""
+                        $.each(data, function (i, item) {
+                            s_v += "<p><div class=\"ui checkbox\"><input data-name=\"" + data[i].fields.video_name +
+                            "\" data-url=" + data[i].fields.video_url + " data-uid=" + data[i].pk + " data-time=" + data[i].fields.video_time + " type=\"checkbox\" id=fun" + $ele.index() + i +
+                            " name=\"fun" + i + "\"><label for=\"fun" + $ele.index() + i + "\">"
+                            + data[i].fields.video_name + "</label></div></p>";
+                        });
+                        s_v += "<br>"
+                        {#                        s_v += '<div class="page-range">' + pageRange + "</div><br><br>"#}
+                        s_v += '<div class="page-range">' + pagePrev + pageRange + pageNext + "</div><br><br>"
+                        $ele.find(".lblSearch").append(s_v);
+                        $('.page-range a').click(function () {
+                            getDataByPage(this);
+                        });
+                    }
+                });
+            });
+
+            $('.btnAddInnerVideo').click(function () {
+                var list = $(".course").has(this).find("input:checked");
+                list.each(function () {
+                    var title = this.dataset.name;
+                    var url = this.dataset.url;
+                    var duration = this.dataset.time;
+                    var uploadId = this.dataset.uid;
+                    var durationVideo = Math.floor(duration / 60) + ':' + duration % 60;
+                    var $content = title;
+                    $content += '<td>' + $content + '</td><td>' + durationVideo + '</td>';
+                    $content += '<td><i class="large arrow circle outline up icon"></i><i class="large arrow circle outline down icon"></i><i class="large remove circle outline icon"></i></td>';
+                    //$content = '<tr>' + $content + '</tr>';
+                    $content = '<tr data-name="' + title + '" data-url="' + url + '" data-uid="' + uploadId + '" data-time="' + duration + '">' + $content + '</tr>';
+                    $('.course').has(this).find('.ui.table tbody').append($content);
+
+                    $('.course').has(this).find('.up.icon').click(function () {
+                        clearTimeout(timeFn);
+                        var thisObj = this;
+                        timeFn = setTimeout(function () {
+                            var $tr = $(thisObj).parent().parent();
+                            if ($tr.index() != 0) {
+                                $tr.prev().before($tr);
+                            }
+                        }, 300);
+                    });
+                    $('.course').has(this).find('.up.icon').dblclick(function () {
+                        clearTimeout(timeFn);
+                    });
+
+                    $('.course').has(this).find('.down.icon').click(function () {
+                        clearTimeout(timeFn);
+                        var thisObj = this;
+                        timeFn = setTimeout(function () {
+                            var $tr = $(thisObj).parent().parent();
+                            if ($tr.index() != $('.ui.table tr').length) {
+                                $tr.next().after($tr);
+                            }
+                        }, 300);
+                    });
+                    $('.course').has(this).find('.down.icon').dblclick(function () {
+                        clearTimeout(timeFn);
+                    });
+
+                    $('.course').has(this).find('.remove.icon').click(function () {
+                        clearTimeout(timeFn);
+                        var thisObj = this;
+                        timeFn = setTimeout(function () {
+                            $('tr').has(thisObj).remove();
+                        }, 300);
+                    });
+                    $('.course').has(this).find('.remove.icon').dblclick(function () {
+                        clearTimeout(timeFn);
+                    });
+                    {#                    $(this).remove();#}
+                    $('.ui.checkbox').has(this).remove();
+                });
+
+
+            });
+
+            $('.icon.edit').parent().on('click', function (event) {
+                var index = $(".course").has(this).index();
+                $('#txtRenameCourse').val($(this).parent().find('span').text());
+                $('#dlgRenameCourse').modal('show');
+                event.stopPropagation();
+            });
+
+            $('.icon.remove').parent().on('click', function (event) {
+                $('.course').has(this).remove();
+                event.stopPropagation();
+            });
+
+            $('.up.icon').click(function () {
+                var $tr = $(this).parent().parent();
+                if ($tr.index() != 0) {
+                    $tr.prev().before($tr);
+                }
+            });
+
+            $('.down.icon').click(function () {
+                var $tr = $(this).parent().parent();
+                if ($tr.index() != $('.ui.table tr').length) {
+                    $tr.next().after($tr);
+                }
+            });
+
+            $('.remove.icon').click(function () {
+                $('tr').has(this).remove();
+            });
+
+            $('#btnAddCourse').click(function () {
+                $course = $('.course.template').clone();
+                $course.removeClass('template');
+                $('.course.template').before($course);
+                $('.tabular.menu .item').tab();
+                $course.find('.icon.edit').parent().click(function (event) {
+                    var index = $(".course").has(this).index();
+                    $("#valRenameCourseIndex").val(index);
+                    $('#txtRenameCourse').val($(this).parent().find('span').text());
+                    $('#dlgRenameCourse').modal('show');
+                    event.stopPropagation();
+                });
+                $course.find('.icon.remove').parent().click(function (event) {
+                    $('.course').has(this).remove();
+                    event.stopPropagation();
+                });
+                $course.find('.btnAddOuterVideo').click(function () {
+                    var $content = $('.ui.grid').has(this).find('.txtOuterVideoTitle').val();
+                    $content += '<td>' + $content + '</td><td>00:00</td>';
+                    $content += '<td><i class="large arrow circle outline up icon"></i><i class="large arrow circle outline down icon"></i><i class="large remove circle outline icon"></i></td>';
+                    $content = '<tr data-name="' + $('.ui.grid').has(this).find('.txtOuterVideoTitle').val() + '" data-url="' + $('.ui.grid').has(this).find('.txtOuterVideoUrl').val() + '">' + $content + '</tr>';
+                    $('.course').has(this).find('.ui.table tbody').append($content);
+                    $('.course').has(this).find('.up.icon').click(function () {
+                        var $tr = $(this).parent().parent();
+                        if ($tr.index() != 0) {
+                            $tr.prev().before($tr);
+                        }
+                    });
+
+                    $course.find('.down.icon').click(function () {
+                        var $tr = $(this).parent().parent();
+                        if ($tr.index() != $('.ui.table tr').length) {
+                            $tr.next().after($tr);
+                        }
+                    });
+
+                    $course.find('.remove.icon').click(function () {
+                        $('tr').has(this).remove();
+                    });
+                });
+
+                $course.find('.btnSearch').click(function () {
+                    //alert($('.course').has(this).find('.txtSearch').val());
+                    {#                    var $ele = $('.course').has(this);#}
+                    {#                    $.getJSON("/videos/search2/" + $ele.find('.txtSearch').val(), function (data, status) {#}
+                    {#                        if (status == 'success') {#}
+                    {#                            //alert($ele.index());#}
+                    {#                            $ele.find(".lblSearch").remove();#}
+                    {#                            $ele.find(".ui.checkbox.s_videos").remove();#}
+                    {#                            $ele.find(".s_content").parent().find("br").remove();#}
+                    {#                            $ele.find(".s_content").after("<br><br><label class=\"lblSearch\">搜索到以下内容：</label>");#}
+                    {##}
+                    {#                            var s_v = ""#}
+                    {#                            $.each(data, function (i, item) {#}
+                    {#                                s_v += "<p><div class=\"ui checkbox\"><input data-name=\"" + data[i].fields.video_name +#}
+                    {#                                "\" data-url=" + data[i].fields.video_url + " data-uid=" + data[i].pk + " data-time=" + data[i].fields.video_time + " type=\"checkbox\" id=fun" + $ele.index() + i +#}
+                    {#                                " name=\"fun" + i + "\"><label for=\"fun" + $ele.index() + i + "\">"#}
+                    {#                                + data[i].fields.video_name + "</label></div></p>";#}
+                    {#                            });#}
+                    {#                            s_v += "<br>"#}
+                    {#                            $ele.find(".lblSearch").append(s_v);#}
+                    {#                        }#}
+                    {#                    });#}
+                    var $ele = $('.course').has(this);
+                    $.getJSON("/videos/search2/" + $ele.find('.txtSearch').val() + '/1', function (data, status) {
+                        if (status == 'success') {
+                            {#                        alert(data);#}
+                            {#                        alert(JSON.parse(data[0]).canNext);#}
+                            {#                        alert(JSON.parse(data[0]).pageList);#}
+                            var pageRange = "";
+                            var pageRange = "";
+                            var pagePrev = '<a href="javascript:void(0);" class="prev" data-no="1">上一页</a>';
+                            var pageNext = '<a href="javascript:void(0);" class="next" data-no="2">下一页</a>';
+                            if (JSON.parse(data[0]).canNext == 'False') {
+                                pageNext = '<span>下一页</span>';
+                            }
+                            if (JSON.parse(data[0]).canPrev == 'False') {
+                                pagePrev = '<span>上一页</span>';
+                            }
+                            $.each(JSON.parse(JSON.parse(data[0]).pageList), function (i, item) {
+                                {#                            alert(JSON.parse(JSON.parse(data[0]).pageList)[i]);#}
+                                var pageNo = JSON.parse(JSON.parse(data[0]).pageList)[i];
+                                {#                                pageRange += '<a href="javascript:void(0);" data-no="' + pageNo + '">' + pageNo + '</a>';#}
+                                if (1 == pageNo) {
+                                    pageRange += '<a href="javascript:void(0);" class="active" data-no="' + pageNo + '">' + pageNo + '</a>';
+                                } else {
+                                    pageRange += '<a href="javascript:void(0);" data-no="' + pageNo + '">' + pageNo + '</a>';
+                                }
+                            })
+                            $ele.find(".lblSearch").remove();
+                            $ele.find(".ui.checkbox.s_videos").remove();
+                            $ele.find(".s_content").parent().find("br").remove();
+                            $ele.find(".s_content").after("<br><br><label class=\"lblSearch\">搜索到以下内容：</label>");
+                            data.shift();
+                            var s_v = ""
+                            $.each(data, function (i, item) {
+                                s_v += "<p><div class=\"ui checkbox\"><input data-name=\"" + data[i].fields.video_name +
+                                "\" data-url=" + data[i].fields.video_url + " data-uid=" + data[i].pk + " data-time=" + data[i].fields.video_time + " type=\"checkbox\" id=fun" + $ele.index() + i +
+                                " name=\"fun" + i + "\"><label for=\"fun" + $ele.index() + i + "\">"
+                                + data[i].fields.video_name + "</label></div></p>";
+                            });
+                            s_v += "<br>"
+                            {#                        s_v += '<div class="page-range">' + pageRange + "</div><br><br>"#}
+                            s_v += '<div class="page-range">' + pagePrev + pageRange + pageNext + "</div><br><br>"
+                            $ele.find(".lblSearch").append(s_v);
+                            $('.page-range a').click(function () {
+                                getDataByPage(this);
+                            });
+                        }
+                    });
+                });
+
+                $course.find('.btnAddInnerVideo').click(function () {
+                    var list = $(".course").has(this).find("input:checked");
+                    list.each(function () {
+                        var title = this.dataset.name;
+                        var url = this.dataset.url;
+                        var duration = this.dataset.time;
+                        var uploadId = this.dataset.uid;
+                        var durationVideo = Math.floor(duration / 60) + ':' + duration % 60;
+                        var $content = title;
+                        $content += '<td>' + $content + '</td><td>' + durationVideo + '</td>';
+                        $content += '<td><i class="large arrow circle outline up icon"></i><i class="large arrow circle outline down icon"></i><i class="large remove circle outline icon"></i></td>';
+                        //$content = '<tr>' + $content + '</tr>';
+                        $content = '<tr data-name="' + title + '" data-url="' + url + '" data-uid="' + uploadId + '" data-time="' + duration + '">' + $content + '</tr>';
+                        $('.course').has(this).find('.ui.table tbody').append($content);
+
+                        $('.course').has(this).find('.up.icon').click(function () {
+                            var $tr = $(this).parent().parent();
+                            if ($tr.index() != 0) {
+                                $tr.prev().before($tr);
+                            }
+                        });
+                        $('.course').has(this).find('.down.icon').click(function () {
+                            var $tr = $(this).parent().parent();
+                            if ($tr.index() != $('.ui.table tr').length) {
+                                $tr.next().after($tr);
+                            }
+                        });
+                        $('.course').has(this).find('.remove.icon').click(function () {
+                            $('tr').has(this).remove();
+                        });
+                        $('.ui.checkbox').has(this).remove();
+                    });
+                });
+
+            });
+
+            $('#btnRenameCourse').click(function () {
+                var index = $('#valRenameCourseIndex').val();
+                $(".course").eq(index).find('.title span').html($('#txtRenameCourse').val());
+            });
+
+            $('#btnSaveTree').click(function () {
+                if ($.trim($('#txtClassName').val()) == "") {
+                    alert('知识树名称不得为空。');
+                    return;
+                }
+                var data = {};
+                data.classTitle = $('#txtClassName').val();
+                data.classDesc = $('#txtClassDesc').val();
+                data.picFileName = $('#picFileName').val();
+                data.parentId = $('#parentId').val();
+                if (data.parentId == '') data.parentId = 1;
+                var courses = [];
+                for (var i = 0; i < $('.course').length - 1; i++) {
+                    var course = {};
+                    course.title = $('.course').eq(i).find('.title span').html();
+                    var videos = [];
+                    for (var j = 0; j < $('.course').eq(i).find('.content tbody tr').length; j++) {
+                        var video = {};
+                        //alert($('.course').eq(i).find('.content tbody tr').get(j).dataset.name);
+                        video.videoName = $('.course').eq(i).find('.content tbody tr').get(j).dataset.name;
+                        video.url = $('.course').eq(i).find('.content tbody tr').get(j).dataset.url;
+                        video.duration = $('.course').eq(i).find('.content tbody tr').get(j).dataset.time;
+                        video.uploadId = $('.course').eq(i).find('.content tbody tr').get(j).dataset.uid;
+                        videos.push(video);
+                    }
+                    course.videos = videos;
+                    courses.push(course);
+                }
+                data.courses = courses;
+                //alert(JSON.stringify(data));
+                console.log(JSON.stringify(data));
+
+                //data.mail = $("#mail").val();
+                //data.password = $("#password").val();
+                $.post("/addClass/", JSON.stringify(data), function (data, status) {
+                    if (status == "success") {
+                        location.href = '/class/' + data.id;
+                    } else {
+                        alert("保存失败");
+                    }
+                });
+            });
+
+            $('#picTree').change(function () {
+                $("#classPicForm").ajaxSubmit({
+                    dataType: 'json',
+                    success: function (data) { //成功
+                        $("#picClass").attr("src", "/static/images/" + data.result);
+                        $("#picFileName").val(data.result);
+                    }
+                })
+
+            });
+        });
+    </script>
+    <style>
+        td i {
+            cursor: pointer;
+
+        }
+
+        .course.template {
+            display: none;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="main">
+        <div class="allTreeTitle">
+            新建知识树
+        </div>
+        <div class="ui form">
+            <div class="field">
+                <label>知识树名称</label>
+                <input type="text" placeholder="知识树名称" id="txtClassName">
+            </div>
+            <div class="field">
+                <label>知识树描述</label>
+                <textarea id="txtClassDesc"></textarea>
+            </div>
+            <label>知识树管理</label>
+
+            <div class="ui styled fluid accordion">
+                <div class="course">
+                    <div class="title">
+                        <i class="dropdown icon"></i>
+                        <span>新知识点</span>
+
+                        <div class="ui icon button mini" style="float: right; margin-top: -3px;"><i
+                                class="icon remove"></i>删除
+                        </div>
+                        <div class="ui icon button mini" style="float: right; margin-top: -3px;"><i
+                                class="icon edit"></i>编辑
+                        </div>
+                    </div>
+                    <div class="content">
+                        <table class="ui table">
+                            <thead>
+                            <tr>
+                                <th>视频名称</th>
+                                <th>时长</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        <div class="ui divider"></div>
+                        <div>
+                            <div class="ui top attached tabular menu">
+                                {#                                <a class="active item" data-tab="first">视频添加</a>#}
+                                <a class="active item" data-tab="second">课程知识点</a>
+                            </div>
+                            {#                            <div class="ui bottom attached active tab segment" data-tab="first">#}
+                            {#                                <div class="ui grid">#}
+                            {#                                    <div class="ten wide row">#}
+                            {#                                        <div class="two wide column right aligned"#}
+                            {#                                             style="height: 37px; line-height: 37px;">#}
+                            {#                                            <label>标题</label>#}
+                            {#                                        </div>#}
+                            {#                                        <div class="thirteen wide column left">#}
+                            {#                                            <input type="text" class="txtOuterVideoTitle" placeholder="标题"#}
+                            {#                                                   id="outVideoTitle">#}
+                            {#                                        </div>#}
+                            {#                                    </div>#}
+                            {#                                    <div class="ten wide row">#}
+                            {#                                        <div class="two wide column right aligned"#}
+                            {#                                             style="height: 37px; line-height: 37px;">#}
+                            {#                                            <label>视频链接</label>#}
+                            {#                                        </div>#}
+                            {#                                        <div class="thirteen wide column left">#}
+                            {#                                            <input type="text" placeholder="视频链接" class="txtOuterVideoUrl"#}
+                            {#                                                   id="outVideoUrl">#}
+                            {#                                        </div>#}
+                            {#                                    </div>#}
+                            {#                                    <div class="ten wide row">#}
+                            {#                                        <div class="three wide column left">#}
+                            {#                                            <div class="ui button btnAddOuterVideo">添加到知识点</div>#}
+                            {#                                        </div>#}
+                            {#                                    </div>#}
+                            {#                                </div>#}
+                            {#                            </div>#}
+                            <div class="ui bottom attached active tab segment" data-tab="second">
+                                <label>可以添加千字文教育的知识点，一切课程为我所用</label>
+
+                                <p>
+
+                                <div class="ui action input s_content">
+                                    <input type="text" placeholder="搜索..." class="txtSearch" style="width:870px;">
+
+                                    <div class="ui button btnSearch">搜索</div>
+                                </div>
+                                <br>
+                                <br>
+
+                                <div class="ui button btnAddInnerVideo">添加到知识点</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 课程模板 -->
+                <div class="course template">
+                    <div class="title">
+                        <i class="dropdown icon"></i>
+                        <span>新知识点</span>
+
+                        <div class="ui icon button mini" style="float: right; margin-top: -3px;"><i
+                                class="icon remove"></i>删除
+                        </div>
+                        <div class="ui icon button mini" style="float: right; margin-top: -3px;"><i
+                                class="icon edit"></i>编辑
+                        </div>
+                    </div>
+                    <div class="content">
+                        <table class="ui table">
+                            <thead>
+                            <tr>
+                                <th>视频名称</th>
+                                <th>时长</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        <div class="ui divider"></div>
+                        <div>
+                            <div class="ui top attached tabular menu">
+                                {#                                <a class="active item" data-tab="first">视频添加</a>#}
+                                <a class="active item" data-tab="second">课程知识点</a>
+                            </div>
+                            {#                            <div class="ui bottom attached active tab segment" data-tab="first">#}
+                            {#                                <div class="ui grid">#}
+                            {#                                    <div class="ten wide row">#}
+                            {#                                        <div class="two wide column right aligned"#}
+                            {#                                             style="height: 37px; line-height: 37px;">#}
+                            {#                                            <label>标题</label>#}
+                            {#                                        </div>#}
+                            {#                                        <div class="thirteen wide column left">#}
+                            {#                                            <input class="txtOuterVideoTitle" type="text" placeholder="标题">#}
+                            {#                                        </div>#}
+                            {#                                    </div>#}
+                            {#                                    <div class="ten wide row">#}
+                            {#                                        <div class="two wide column right aligned"#}
+                            {#                                             style="height: 37px; line-height: 37px;">#}
+                            {#                                            <label>视频链接</label>#}
+                            {#                                        </div>#}
+                            {#                                        <div class="thirteen wide column left">#}
+                            {#                                            <input type="text" placeholder="视频链接" class="txtOuterVideoUrl">#}
+                            {#                                        </div>#}
+                            {#                                    </div>#}
+                            {#                                    <div class="ten wide row">#}
+                            {#                                        <div class="three wide column left">#}
+                            {#                                            <div class="ui button btnAddOuterVideo">添加到知识点</div>#}
+                            {#                                        </div>#}
+                            {#                                    </div>#}
+                            {#                                </div>#}
+                            {#                            </div>#}
+                            <div class="ui bottom attached active tab segment" data-tab="second">
+                                <label>可以添加千字文教育的知识点，一切课程为我所用</label><br><br>
+
+                                <div class="ui action input s_content">
+                                    <input type="text" placeholder="搜索..." class="txtSearch" style="width:870px;">
+
+                                    <div class="ui button btnSearch">搜索</div>
+                                </div>
+                                <br><br>
+
+                                <div class="ui button btnAddInnerVideo">添加到知识点</div>
+                            </div>
+                            <br>
+
+                            <!--<div class="ui button red">
+                                删除此知识点
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui divider"></div>
+        <div class="fluid ui button" id="btnAddCourse"><i class="add circle icon"></i>继续添加知识点</div>
+        <div class="ui divider"></div>
+        <label>设置封面</label><br>
+        <span>选择上传的图片</span>
+
+        <div class="ui button" id="btnSelTreePic">
+            文件...
+        </div>
+        <form action="/uploadClassPicture/" name="classPicForm" id="classPicForm" method="post"
+              enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="picTree" id="picTree" value="" style="opacity: 0; position: absolute; left: 0px;">
+            <input type="hidden" name="picFileName" id="picFileName" value="">
+        </form>
+        <div class="ui items">
+            <div class="item">
+                <a class="ui small image">
+                    <img src="/static/images/default_tree.jpg" id="picClass">
+                </a>
+
+                <div class="content">
+                    <a class="header">提示</a>
+
+                    <div class="description">
+                        <p>*请上传2MB以内大小的图片</p>
+
+                        <p>支持png和jpg格式</p>
+
+                        <p>大小不超过2MB</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <label>知识树分类</label>
+
+        <div class="ui selection dropdown">
+            <input type="hidden" id="parentId" name="gender">
+
+            <div class="default text">知识树分类</div>
+            <i class="dropdown icon"></i>
+
+            <div class="menu">
+                {% for cls in tree_class %}
+                    <div class="item" data-value="{{ cls.id }}">{{ cls.class_name }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="ui divider"></div>
+        <div class="ui green button" id="btnSaveTree">发布知识树</div>
+        <div class="ui button" id="btnCancel">取消</div>
+
+    </div>
+
+    <br>
+    <br>
+    <div class="ui small modal" id="dlgConfirmDel">
+        <i class="close icon"></i>
+
+        <div class="header" style="width: 100%;">
+            删除该知识点
+        </div>
+        <div class="content">
+            <p>你确定删除当前知识点吗？</p>
+        </div>
+        <div class="actions">
+            <div class="ui negative button">
+                不
+            </div>
+            <div class="ui positive labeled icon button">
+                是的
+                <i class="checkmark icon"></i>
+            </div>
+        </div>
+    </div>
+    <div class="ui small modal" id="dlgRenameCourse">
+        <i class="close icon"></i>
+
+        <div class="header" style="width: 100%;">
+            重命名知识点
+        </div>
+        <div class="content">
+            <div class="ui input fluid">
+                <input type="text" placeholder="知识点新名称" id="txtRenameCourse">
+                <input type="hidden" value="0" id="valRenameCourseIndex">
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui negative button">
+                取消
+            </div>
+            <div class="ui positive labeled icon button" id="btnRenameCourse">
+                确认
+                <i class="checkmark icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <!--    <div id="playercontainer" style="display: none; width: 0px; height: 0px;">
+            <script type="text/javascript">
+                var player = cyberplayer("playercontainer").setup({
+                    width: 0,
+                    height: 0,
+                    backcolor: "#000000",
+                    //stretching: "uniform",
+                    file: "http://7xkbza.com1.z0.glb.clouddn.com/Intermission-Walk-in_512kb.mp4?attname=&e=1436783331&token=TBCggnDqnGg9ytfNu53Wd0cMSasyTLyH6l8HCvCe:ZY9BSy4zDLF4c9lMms6KbY6htFQ",
+                    //image: "http://img.1985t.com/uploads/attaches/2014/07/17833-t98gYl.jpg",
+                    //autoStart: false,
+                    //repeat: "always",
+                    //volume: 100,
+                    controlbar: "none",
+    // ak和sk(只需前16位)参数值需要开发者进行申请
+                    ak: 'c6LOUghpU8pu7ZGI1pNQwmh3',
+                    sk: 'N1zwpORmrnUBS8EfCYGQMySX5nbAG1uK'
+                });
+            </script>
+        </div>-->
+{% endblock %}

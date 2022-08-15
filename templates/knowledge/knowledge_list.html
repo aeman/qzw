@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% block header_js_css %}
+<title>知识点列表</title>
+<link rel="stylesheet" href="/static/semantic.css"/>
+<link rel="stylesheet" href="/static/css/pages/course-tab.css"/>
+<link rel="stylesheet" href="/static/css/mgr.css"/>
+<script type="text/javascript" src="/static/js/article/avalon.min.js"></script>
+<script type="text/javascript">
+    var timefilter = function(src) {
+        var secs = parseInt(src);
+        var min = secs / 60;
+        var sec = secs % 60;
+        return (min == 0 ? "0:" : "" + Math.round(min) + ":") + (sec < 10? "0" + sec : sec);
+    };
+    window.scope = {
+        searchText: '{{searchText}}',
+        {% for item in items %}
+        videos_{{item.id}}: [],
+        {% endfor %}
+        $init: function(postFn) {
+            var ids = [];
+            {% for item in items %}
+            ids.push("{{item.id}}");
+            {% endfor %}
+            $.get("/knowledge/get_courses_videos/" + ids.join(","), function(data){
+                for (var k in data) {
+                    vm["videos_" + k] = data[k];
+                    var totalTime = 0;
+                    for (var i = 0, j = data[k].length; i < j; i++) {
+                      totalTime = totalTime + data[k][i].video_time;
+                    }
+                    $(".follow_with_" + k).html(timefilter(totalTime));
+                }
+                if (postFn) postFn();
+                vm.showit = true;
+            });
+        }
+    };
+</script>
+<script type="text/javascript" src="/static/js/knowledge/knowledge_list.js"></script>
+<style type="text/css">
+    .bottomWrap {
+    position: static;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container" ms-controller="knowledgelist">
+    <div class="w">
+        <div class="grid01 fix">
+            <!-- menu start -->
+            {% include 'mgr_left_menu.html' %}
+            <!-- menu end -->
+
+            <div class="colm">
+                <div class="mod-hd">知识点列表<i class="cape"></i></div>
+                <div class="mod-bd">
+                    <div class="search-box fix">
+                        <span class="fl">知识点名称：</span>
+                        <input type="text" ms-duplex="searchText" class="i-text fl"/>
+                        <input type="button" class="i-btn fl" ms-click="search()" value="搜索"/>
+                    </div>
+
+                    <div class="table-list">
+                        <table width="100%">
+                            <tbody>
+                            <tr>
+                                <th>知识点标题</th>
+                                <th>包含的视频</th>
+                                <th>视频时间</th>
+                                <th class="i-end">操作</th>
+                            </tr>
+                            <tr class="i-empty">
+                                <td>&nbsp</td>
+                                <td>&nbsp</td>
+                                <td>&nbsp</td>
+                                <td>&nbsp</td>
+                            </tr>
+                            {% for item in items %}
+                            <tr>
+                                <td>
+                                    <div class="wrap-knows-title"><!--a href="javascript:void(0)" class="title-link"-->
+                                        {{item.course_name}}<!--/a--></div>
+                                </td>
+                                <td>
+                                    <div class="wrap-video">
+                                        <ul ms-visible="showit" class="videos">
+                                            <li ms-repeat="videos_{{item.id}}"><a ms-href="/video/{-el.oid-}"
+                                                                                  target="_blank">{- $index + 1 -}、{-
+                                                el.name|truncate(14) -}</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="wrap-many follow_with_{{item.id}}">0</div>
+                                </td>
+                                <td>
+                                    <div class="wrap-action"><a href="/knowledge/edit/{{item.id}}">编辑</a>|<a
+                                            href="javascript:void(0);"
+                                            ms-click="deleteItem({{item.id}})"
+                                            class="i-del">删除</a></div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% load duration_format %}
+                    {% autoescape off %}
+                    {% with searchRepParam='searchText,'|add:searchText %}
+                    {{page | page_filter:'/knowledge/list/page_index/searchText' | replace:searchRepParam }}
+                    {% endwith %}
+                    {% endautoescape %}
+                </div>
+            </div>
+            <!-- colm end -->
+        </div>
+        <!-- grid01 end -->
+    </div>
+</div>
+<div class="del-layer" style="display:none;width: 220px">
+    <p style="width: 180px;">
+        <span class="layer-pic"></span>
+        <span class="layer-txt">确认删除这篇文章么?</span>
+    </p>
+
+    <div class="layer-btns" style="width: 180px;">
+        <a href="javascript: void(0)" class="cancel">取消</a>
+        <a href="javascript: void(0)" class="layer-red-btn">删除</a>
+    </div>
+</div>
+{% endblock %}

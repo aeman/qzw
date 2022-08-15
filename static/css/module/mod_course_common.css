@@ -1,0 +1,226 @@
+@charset "utf-8";
+.com-btn{
+	display: inline-block;
+	width: 200px;
+	height: 50px;
+	line-height: 50px;
+	background-color: #336699;
+	font-size: 24px;
+	font-family: "Microsoft YaHei";
+	border-radius: 30px;
+	color: #FFF;
+	text-align: center;
+}
+.com-btn.btn-smal{
+	width: 120px;
+	height: 32px;
+	line-height: 32px;
+	font-size: 18px;
+}
+.com-btn.course-btn-green{
+	height: 70px;
+	line-height: 70px;
+	background-color: #009900;
+	font-size: 28px;
+	border-radius: 10px;
+	color: #FFF;
+}
+.com-btn.btn-gray{
+	height: 70px;
+	line-height: 70px;
+	background-color: #C9C9C9;
+	font-size: 25px;
+	border-radius: 10px;
+	color: #333;
+}
+/*滚动条*/
+.com-scrol-con{
+	color: #66CCFF;
+	font-family: "Microsoft YaHei";
+}
+.com-scrol{
+	display: inline-block;
+	width: 600px;
+	height: 7px;
+	position: relative;
+}
+.com-scrol-con .scrol-tit{
+	font-size: 18px;
+	padding-right: 25px;
+	vertical-align: middle;
+}
+.com-scrol-con .scrol-num{
+	margin-left: 25px;
+	font-size: 20px;
+	vertical-align: middle;
+}
+.com-scrol .scrol-base{
+	display: inline-block;
+	width: 100%;
+	height:100%;
+	background-color: #DCDCDC;
+}
+.com-scrol .scrol-in{
+	display: inline-block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 60%;
+	height: 100%;
+	background-color: #66CCFF;
+}
+.com-scrol-con.scrol-smal .com-scrol{
+	width: 220px;
+	height: 4px;
+}
+.com-scrol-con.scrol-smal .scrol-num{
+	font-size: 13px;
+	margin-left: 5px;
+}
+.com-scrol-con.scrol-finish .scrol-in{
+	width: 100%;
+}
+.com-scrol-con.scrol-finish .scrol-num{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url("../../images/common/scrol-finish.png") no-repeat; 
+	background-size: 100%;
+}
+/*公共翻页*/
+.com-pages {
+	text-align: center;
+}
+.com-pages dt{
+	margin-right: 10px;
+}
+.com-pages dd,.com-pages dt{
+	display: inline-block;
+}
+.com-pages dd a,.com-pages dt a,.com-pages dd span{
+	display: block;
+	color: #333;
+	font-size: 14px;
+	text-align: center;
+	line-height: 40px;
+}
+.com-pages dd a,.com-pages dt a{
+	background-color: #fff;
+}
+.com-pages dd span{
+	font-size: 13px;
+}
+.com-pages dt a{
+	width: 80px;
+	height: 40px;
+	font-family: "Microsoft YaHei";
+	color: #999999;
+}
+.com-pages dd a{
+	height: 40px;
+	width: 38px;
+	border-right: 2px solid #E6E6E6;
+	font-family: "Microsoft YaHei";
+}
+.com-pages dd a:hover{
+	background-color: #336699;
+	color: #fff;
+}
+.com-pages dt a:hover{
+	background-color: #336699;
+	color: #fff;
+}
+.com-pages .cur{
+	background-color: #336699;
+	color: #fff;
+}
+.com-pages dd .no-border{
+	border: none;
+	width: 40px;
+}
+.pages{
+	font-family: "Microsoft YaHei";
+	color: #666;
+	position:relative; 
+	height:80px;  
+	text-align:center; 
+	font-size:17px; 
+	border-top:4px solid #336699;
+}
+.pages .cape{
+	position:absolute; 
+	display:block; 
+	top:-4px; 
+	left:50%; 
+	width:42px; 
+	height:28px; 
+	margin-left:-22px; 
+	background:url("../../images/common/pages.png") no-repeat;
+}
+.pages a{
+	color: #666;
+	position:relative; 
+	top:-4px; 
+	display:inline-block; 
+	zoom:1; 
+	*display:inline; 
+	width:42px; 
+	padding-top: 38px;
+}
+.pages a.on{
+	color: #000;
+	background:url("../../images/common/pages.png") no-repeat center 0; 
+	text-decoration:underline;
+}
+.pages a:hover{
+	color:#000;
+}
+/*提示信息*/
+.com-block{
+	background-color: #DCDCDC;
+	font-family: "Microsoft YaHei";
+	color: #333;
+	font-size: 17px;
+	padding: 0 10px 2px 8px;
+}
+.com-block i{
+	padding-left:1px;
+	color: #fff;
+	font-size: 20px;
+	font-weight: bold;
+	cursor: pointer;
+}
+.new-know{
+	padding: 1px 17px 1px 10px;
+	border: 2px solid #C9C9C9;
+	color: #333333;
+	font-size: 18px;
+	font-family: "Microsoft YaHei";
+	background-color: #fff;
+	cursor: pointer;
+}
+.new-know i{
+	color: #33CC33;
+	font-size: 21px;
+	font-weight: bold;
+}
+.com-error{
+	font-family: "Microsoft YaHei";
+	padding: 5px 15px 5px 7px;
+	background-color: #F4CFD1;
+	border: 2px solid #F29C9F;
+	color: #CC6666;
+}
+.com-error i{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border-radius: 20px;
+	background-color: #E60012;
+	color: #fff;
+	font-size: 20px;
+	line-height: 17px;
+	text-align: center;
+	font-weight: bold;
+	margin-right: 5px;
+}

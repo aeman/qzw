@@ -1,0 +1,29 @@
+<div class="cols" style="visibility:hidden">
+    <div class="menu">
+        {% if 'article.can_edit_article' in request.user.get_all_permissions %}
+        <dl>
+            <dt><i class="i-article"></i>文章</dt>
+            <dd>
+                <a href="/article/list">文章列表</a>
+                <a href="/article/add">写文章</a>
+            </dd>
+        </dl>
+        {% endif %}
+        <dl>
+            <dt><i class="i-knowledge"></i>知识点</dt>
+            <dd>
+                <a href="/knowledge/list">知识点列表</a>
+                <a href="/knowledge/add">新建知识点</a>
+            </dd>
+        </dl>
+        {% if 'course.can_edit_video' in request.user.get_all_permissions %}
+        <dl class="i-end">
+            <dt><i class="i-video"></i>视频</dt>
+            <dd>
+                <a href="/videos">视频列表</a>
+                <a href="/videos/upload">上传视频</a>
+            </dd>
+        </dl>
+        {% endif %}
+    </div>
+</div>
